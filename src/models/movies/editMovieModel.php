@@ -5,7 +5,7 @@
 * @param $checkedHour ($_POST['release'])
 * @return void
 */
-function addMovie($checkedHour) : void
+function addMovie() : void
 {
     global $db;
     $movies = [
@@ -43,6 +43,29 @@ function checkAlreadyExistMovie(): mixed
     $query->execute();
 
     return $query -> fetch();
+
+};
+
+/**
+* Fonction for update a movie
+*/
+function updateMovie()
+{
+
+    global $db;
+    $data = ['title' => $_POST['title'],
+            'categories' => $_POST['cat'],
+            'director' => $_POST['director'],
+            'casting' => $_POST['casting'],
+            'synopsis' => $_POST['synopsis'],
+            'duration' => $_POST['duration'],
+            'release_date' => $_POST['release'],
+            'id' => $_GET['id']
+    ];
+
+    $sql = 'UPDATE movies SET title = :title, categories = :categories, director = :director, casting = :casting, synopsis = :synopsis, duration = :duration, release_date = :release_date WHERE id = :id';
+    $query = $db -> prepare($sql);
+    $query ->execute($data);
 
 };
 

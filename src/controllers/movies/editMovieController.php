@@ -132,8 +132,17 @@ if(!empty($_POST)){
 
     } else {
         
-        addMovie($_POST['duration']);
-        $success = 'Le film a été ajouté avec success.';
+        if (!empty($_GET['id'])) {
+
+            updateMovie();
+            $success = 'Le film a été mis a jour avec success.';
+
+        } else {
+
+            addMovie();
+            $success = 'Le film a été ajouté avec success.';
+
+        }
 
     }
 
