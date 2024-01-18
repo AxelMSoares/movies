@@ -33,7 +33,7 @@ if (!empty($match['target'])){
     require SRC . 'views/' . $match['target'] . 'View.php';
 } else {
     header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
-    echo '404';
+    echo 'Erreur 404';
 }
 
 ?>

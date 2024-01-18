@@ -22,6 +22,7 @@ get_header('Créer un film', 'admin') ;
             <?php $error = checkEmptyFields('title'); ?>
             <label for="title" class="form-label">Titre du film: *</label>
             <input type="text" class="form-control <?= $moviesMessage['title']['class'] ?>" id="title" name="title" value="<?= getValue('title') ?>" required>
+            <div class="invalid-feedback"><p> <?= $moviesMessage['title']['message'] ?></p></div>
             <?= $error['message']; ?>
             
         </div>

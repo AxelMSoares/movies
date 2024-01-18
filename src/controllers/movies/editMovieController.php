@@ -66,7 +66,12 @@ if(!empty($_POST)){
         $moviesMessage['title']['class'] = 'is-invalid';
         $error = "Merci de remplir toutes les cases obligatoires!";
 
-    } 
+    } else if(checkAlreadyExistMovie()){
+        $moviesMessage['title']['status'] = true;
+        $moviesMessage['title']['class'] = 'is-invalid';
+        $moviesMessage['title']['message'] = 'Il existe déjà un film avec ce titre';
+        $error = "Il existe déjà un film avec ce titre";
+    }
     
     // Check if the synopsis input is empty
     if (empty($_POST['synopsis'])) {
@@ -126,7 +131,7 @@ if(!empty($_POST)){
         $moviesMessage['global']['message'] = 'Erreur lors de l\'insertion dans la base de données. Une des données est invalide.';
 
     } else {
-
+        
         addMovie($_POST['duration']);
         $success = 'Le film a été ajouté avec success.';
 

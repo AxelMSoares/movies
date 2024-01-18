@@ -28,3 +28,21 @@ function addMovie($checkedHour) : void
     }
 }
 
+/**
+* Check if the email already exists in the database
+*  
+*/
+
+function checkAlreadyExistMovie(): mixed
+{
+
+    global $db;
+    $sql = 'SELECT id FROM movies WHERE title = :title';
+    $query = $db->prepare($sql);
+    $query->bindParam(':title', $_POST['title'], PDO::PARAM_STR);
+    $query->execute();
+
+    return $query -> fetch();
+
+};
+
