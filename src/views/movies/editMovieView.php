@@ -19,26 +19,27 @@ get_header('Créer un film', 'admin') ;
           <input type="file" class="form-control" id="poster" name="poster">
         </div>
         <div class="mb-3">
-            <label for="title" class="form-label">Titre du film:</label>
-            <input type="text" class="form-control" id="title" name="title" value="<?= getValue('title') ?>">
+            <?php $error = checkEmptyFields('title'); ?>
+            <label for="title" class="form-label">Titre du film: *</label>
+            <input type="text" class="form-control <?= $moviesMessage['title']['class'] ?>" id="title" name="title" value="<?= getValue('title') ?>" required>
+            <?= $error['message']; ?>
+            
         </div>
         <div class="mb-3">
             <label for="cat" class="form-label">Categories:</label>
             <input type="text" class="form-control" id="cat" name="cat" value="<?= getValue('cat') ?>">
         </div>
         <div class="mb-3">
-            <label for="release" class="form-label">Date Sortie:</label>
-            <input type="date" class="form-control" id="release" name="release" max="31-12-2024" required pattern="\d{4}-\d{2}-\d{2}"  value="<?= getValue('release') ?>">
-            <?php if (isset($dateErrorMsg)) { ?>
-                <div class="invalid-feedback"><p><?= $dateErrorMsg ?></p></div>
-            <?php } ?>
+            <?php $error = checkEmptyFields('release'); ?>
+            <label for="release" class="form-label">Date Sortie: *</label>
+            <input type="date" class="form-control  <?= $moviesMessage['release']['class'] ?>" id="release" name="release" max="31-12-2024" required pattern="\d{4}-\d{2}-\d{2}"  value="<?= getValue('release') ?>">
+            <div class="invalid-feedback"><p> <?= $moviesMessage['release']['message'] ?></p></div>
+            <?= $error['message']; ?>
         </div>
         <div class="mb-3">
             <label for="duration" class="form-label">Durée: (en minutes)</label>
-            <input type="number" class="form-control" id="duration" name="duration"  value="<?= getValue('duration') ?>" max="600">
-            <?php if (isset($hourErrorMsg)) { ?>
-                <div class="invalid-feedback"><p> <?= $hourErrorMsg ?></p></div>
-            <?php } ?>
+            <input type="number" class="form-control  <?= $moviesMessage['duration']['class'] ?>" id="duration" name="duration"  value="<?= getValue('duration') ?>" max="600">
+            <div class="invalid-feedback"><p> <?= $moviesMessage['duration']['message'] ?></p></div>
         </div>
         <div class="mb-3">
             <label for="director" class="form-label">Réalisateur:</label>
@@ -49,8 +50,10 @@ get_header('Créer un film', 'admin') ;
             <input type="text" class="form-control" id="casting" name="casting"  value="<?= getValue('casting') ?>">
         </div>
         <div class="mb-3">
-            <label for="synopsis" class="form-label">Description:</label>
-            <textarea class="form-control" id="synopsis" name="synopsis" style="resize:none;height:180px;"><?= getValue('synopsis') ?></textarea>
+            <?php $error = checkEmptyFields('synopsis'); ?>
+            <label for="synopsis" class="form-label">Description: *</label>
+            <textarea class="form-control <?= $moviesMessage['synopsis']['class'] ?>" id="synopsis" name="synopsis" style="resize:none;height:180px;" required><?= getValue('synopsis') ?></textarea>
+            <?= $error['message']; ?>
         </div>
         <div class="text-center">
             <button type="Submit" class="btn btn-primary" style="align-self:center">Envoyer</button>
