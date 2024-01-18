@@ -1,0 +1,284 @@
+// Colors: (on peut ajouter un dark mode par exemple)
+:root{
+    --primary-color: #112E3A;
+    --defaut-color: #fff;
+    --background-color: #fff;
+}
+
+// En scss on peut ajouter des commentaires en utilisant des doubles slashs devant
+
+// On peut créer des variables pour les fonts:
+$title-font: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+$default-font: 'Noto Sans', sans-serif;
+
+// Imports, on decoupe notre code scss en plusieurs morceaux. Exemple: fonts, defaut, header, footer, main
+@import '_reset.scss';
+@import '_header.scss';
+
+body{
+    background-color: #fff;
+    font-family: 'Noto Sans', sans-serif;
+    p{
+        color: #000;
+        font-weight: 300;
+        font-size: 16px;
+    }
+}
+
+header{
+    .upperHeader{
+        background-color:#112E3A;
+        color: #fff;
+        height: 100px;
+        padding-top: 10px;
+    }
+
+    
+    .upperHeader a{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .headerWrapper{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1400px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-left: 100px;
+    }
+
+    .logo h1{
+        font-size: 34px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-right: 150px;
+    }
+
+    .search{
+        position: relative;
+    }
+
+    .search .searchLogo{
+        position: absolute;
+        right: 0px;
+        top: 4px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        border: 0px;
+        padding: 0px 10px;
+    }
+
+    .search .searchLogo img{
+        width: 25px;
+        height: 25px;
+    }
+
+
+    .searchBar{
+        width: 450px;
+        border-radius: 10px;
+        height: 30px;
+    }
+
+
+    .connection{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .connection img{
+        margin-left: 200px;
+        margin-right: 35px;
+        width: 50px;
+    }
+
+    .connection a{
+        margin: 10px 0;
+    }
+
+    .connectionLinks{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 700;
+        margin-right: 120px;
+    }
+
+    .bottomHeader{
+        height: 60px;
+        background-color: #C9171A;
+    }
+
+}
+
+main {
+    .contentWrapper {
+        max-width: 1400px;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .bestRated{
+        background-color: #112E3A;
+        width: 600px;
+        border-radius: 20px;
+        margin-top: 20px;
+        padding: 20px 0;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    .bestRated h2{
+        color: #fff;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .bestRated .movieBox{
+        background-color: #C9171A;
+        width: 560px;
+        height: 350px;
+        border-radius: 20px;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .bestRated .leftArrow{
+        position: absolute;
+        left: 20px;
+        top: 125px;
+    }
+
+    .bestRated .rightArrow{
+        position: absolute;
+        right: 20px;
+        top: 125px;
+    }
+
+    .bestRated .moreBtn{
+        display: inline-block;
+        color:#fff;
+        background-color: #C9171A;
+        text-decoration: none;
+        text-align: center;
+        padding: 20px 30px;
+        border-radius: 10px;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .latestReleases{
+        background-color: #112E3A;
+        width: 600px;
+        border-radius: 20px;
+        margin-top: 20px;
+        padding: 20px 0;
+        margin-bottom: 50px;
+    }
+
+    .latestReleases h2{
+        color: #fff;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .latestReleases .redBG{
+        background-color: #C9171A;
+        width: 560px;
+        border-radius: 20px;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .latestReleases .moreBtn{
+        display: inline-block;
+        color:#fff;
+        background-color: #112E3A;
+        text-decoration: none;
+        text-align: center;
+        padding: 20px 30px;
+        border-radius: 10px;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 20px;
+        margin-top: 80px;
+    }
+}
+
+footer {
+    background-color: #112E3A;
+    color: #fff;
+    font-size: 14px;
+
+    .footerWrapper{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-top: 20px;
+    }
+
+    ul:first-child{
+        margin-left: 150px;
+    }
+
+    ul:last-child{
+        margin-right: 150px;
+    }
+
+    a{
+        text-decoration: none;
+        color: #fff;
+        margin-right: 20px;
+    }
+
+    p{
+        color: #fff;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    li{
+        margin-bottom: 10px;
+    }
+
+    h3{
+        text-align: center;
+        font-size: 12px;
+        text-align: center;
+        padding: 10px 0;
+        background-color: #C9171A;
+        max-width: 1900px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .social{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}   

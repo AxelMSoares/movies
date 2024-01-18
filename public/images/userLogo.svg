@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="97" viewBox="0 0 72 97">
+  <defs>
+    <filter id="Rectangle_2" x="0" y="36" width="72" height="61" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.369"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellipse_2" x="9" y="0" width="54" height="54" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-2"/>
+      <feFlood flood-opacity="0.369"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Logo_Utilisateur" data-name="Logo Utilisateur" transform="translate(1 1)">
+    <g transform="matrix(1, 0, 0, 1, -1, -1)" filter="url(#Rectangle_2)">
+      <g id="Rectangle_2-2" data-name="Rectangle 2" transform="translate(1 37)" fill="#c9171a" stroke="#112e3a" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+        <path d="M25,0H41A25,25,0,0,1,66,25V55a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V25A25,25,0,0,1,25,0Z" stroke="none"/>
+        <path d="M25,2H41A23,23,0,0,1,64,25V53a0,0,0,0,1,0,0H2a0,0,0,0,1,0,0V25A23,23,0,0,1,25,2Z" fill="none"/>
+      </g>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -1, -1)" filter="url(#Ellipse_2)">
+      <g id="Ellipse_2-2" data-name="Ellipse 2" transform="translate(10 1)" fill="#c9171a" stroke="#112e3a" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+        <circle cx="24" cy="24" r="24" stroke="none"/>
+        <circle cx="24" cy="24" r="22" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

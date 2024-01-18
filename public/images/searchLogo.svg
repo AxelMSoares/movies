@@ -1,0 +1,7 @@
+<svg id="Logo_Loupe" data-name="Logo Loupe" xmlns="http://www.w3.org/2000/svg" width="38.328" height="39.328" viewBox="0 0 38.328 39.328">
+  <g id="Ellipse_1" data-name="Ellipse 1" fill="none" stroke="#0f2027" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+    <circle cx="13.5" cy="13.5" r="13.5" stroke="none"/>
+    <circle cx="13.5" cy="13.5" r="11.5" fill="none"/>
+  </g>
+  <line id="Ligne_1" data-name="Ligne 1" x2="14" y2="14" transform="translate(21.5 22.5)" fill="none" stroke="#0f2027" stroke-linecap="round" stroke-width="4"/>
+</svg>
