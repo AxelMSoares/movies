@@ -11,9 +11,9 @@ $router->map( 'GET|POST', $admin . '/utilisateurs/editer/[i:id]', 'users/admin_e
 $router->map( 'GET', $admin . '/utilisateurs/supprimer/[i:id]', '', ''); // 6
 
 // Movies
-$router->map( 'GET', $admin . '/films', '', '');
+$router->map( 'GET', $admin . '/films', 'movies/displayMovie', 'displayMovie');
 $router->map( 'GET|POST', $admin . '/films/editer', 'movies/editMovie', '');
-$router->map( 'GET|POST', $admin . '/films/editer/[i:id]', 'movies/editMovie', '');
+$router->map( 'GET|POST', $admin . '/films/editer/[i:id]', 'movies/editMovie', 'editMovie');
 $router->map( 'GET', $admin . '/films/supprimer/[i:id]', '', '');
 
 // Categories
