@@ -21,9 +21,8 @@ get_header('Films', 'admin') ;
         <li class="list-group-item">Casting: <?= $movie['casting'] ?></li>
       </ul>
       <div class="card-body">
-        <p class="card-text">Description: <?= $movie['synopsis'] ?></p>
-        <a href="id=<?= $movie['id'] ?>" class="card-link btn btn-danger">Supprimer</a>
-        <a href="<?= $router->generate('editMovie'); ?><?= $movie['id'] ?>" class="card-link btn btn-primary">Modifier</a>
+        <a href="<?= $router->generate('deleteMovie'); ?><?= $movie['id'] ?>" class="card-link btn btn-danger">Supprimer</a>
+        <a href="<?= $router->generate('editMovie'); ?>/<?= $movie['id'] ?>" class="card-link btn btn-primary">Modifier</a>
       </div>
     </div>
 

@@ -2,10 +2,14 @@
 
 get_header('Créer un film', 'admin') ; 
 
+if (isset($_GET['id'])){
+    getInfosById();
+}
+
 ?>
 
 <div class="container mb-5" style="max-width: 400px">
-    <form action="" method="post">
+    <form action="" method="post" novalidate>
 
         <?php if (isset($error)) { ?>
             <div class="m-2 alert alert-danger"><?= $error ?></div>
@@ -27,14 +31,14 @@ get_header('Créer un film', 'admin') ;
             
         </div>
         <div class="mb-3">
-            <label for="cat" class="form-label">Categories:</label>
-            <input type="text" class="form-control" id="cat" name="cat" value="<?= getValue('cat') ?>">
+            <label for="categories" class="form-label">Categories:</label>
+            <input type="text" class="form-control" id="categories" name="categories" value="<?= getValue('categories') ?>">
         </div>
         <div class="mb-3">
-            <?php $error = checkEmptyFields('release'); ?>
-            <label for="release" class="form-label">Date Sortie: *</label>
-            <input type="date" class="form-control  <?= $moviesMessage['release']['class'] ?>" id="release" name="release" max="31-12-2024" required pattern="\d{4}-\d{2}-\d{2}"  value="<?= getValue('release') ?>">
-            <div class="invalid-feedback"><p> <?= $moviesMessage['release']['message'] ?></p></div>
+            <?php $error = checkEmptyFields('release_date'); ?>
+            <label for="release_date" class="form-label">Date Sortie: *</label>
+            <input type="date" class="form-control  <?= $moviesMessage['release_date']['class'] ?>" id="release_date" name="release_date" max="31-12-2024" required pattern="\d{4}-\d{2}-\d{2}"  value="<?= getValue('release_date') ?>">
+            <div class="invalid-feedback"><p> <?= $moviesMessage['release_date']['message'] ?></p></div>
             <?= $error['message']; ?>
         </div>
         <div class="mb-3">

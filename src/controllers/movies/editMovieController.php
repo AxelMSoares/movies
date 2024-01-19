@@ -9,7 +9,7 @@ $moviesMessage = [
 
     ],
 
-    'cat' => [
+    'categories' => [
         'message' => false,
         'class' => false,
         'status' => false
@@ -44,7 +44,7 @@ $moviesMessage = [
 
     ],
     
-    'release' => [
+    'release_date' => [
         'message' => false,
         'class' => false,
         'status' => false
@@ -82,20 +82,20 @@ if(!empty($_POST)){
 
     }
     
-    // Check if the release input is empty
-    if (empty($_POST['release'])) {
+    // Check if the release_date input is empty
+    if (empty($_POST['release_date'])) {
 
-        $moviesMessage['release']['status'] = true;
-        $moviesMessage['release']['class'] = 'is-invalid';
+        $moviesMessage['release_date']['status'] = true;
+        $moviesMessage['release_date']['class'] = 'is-invalid';
         $error = "Merci de remplir toutes les cases obligatoires!";
 
     } else {
         
-        if(!validateDate($_POST['release'])) {
+        if(!validateDate($_POST['release_date'])) {
         
-            $moviesMessage['release']['message'] = 'Le format de la date doit etre JJ/MM/AAAA';
-            $moviesMessage['release']['class'] = 'is-invalid';
-            $moviesMessage['release']['status'] = true;
+            $moviesMessage['release_date']['message'] = 'Le format de la date doit etre JJ/MM/AAAA';
+            $moviesMessage['release_date']['class'] = 'is-invalid';
+            $moviesMessage['release_date']['status'] = true;
     
         }
 
@@ -124,7 +124,7 @@ if(!empty($_POST)){
         // If Success in all the verifications, the movie is add in the database.
     if ($moviesMessage['title']['status'] === true ||
         $moviesMessage['synopsis']['status'] === true ||
-        $moviesMessage['release']['status'] === true ||
+        $moviesMessage['release_date']['status'] === true ||
         $moviesMessage['duration']['status'] === true)
     {
 

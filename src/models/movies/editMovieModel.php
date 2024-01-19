@@ -10,12 +10,12 @@ function addMovie() : void
     global $db;
     $movies = [
             'title' => $_POST['title'],
-            'categories' => $_POST['cat'],
+            'categories' => $_POST['categories'],
             'director' => $_POST['director'],
             'casting' => $_POST['casting'],
             'synopsis' => $_POST['synopsis'],
             'duration' => $_POST['duration'],
-            'release_date' => $_POST['release']
+            'release_date' => $_POST['release_date']
         ];
 
     $sql = "INSERT INTO movies (title, categories, director, casting, synopsis, duration, release_date) VALUES (:title, :categories, :director, :casting, :synopsis, :duration, :release_date)";
@@ -54,12 +54,12 @@ function updateMovie()
 
     global $db;
     $data = ['title' => $_POST['title'],
-            'categories' => $_POST['cat'],
+            'categories' => $_POST['categories'],
             'director' => $_POST['director'],
             'casting' => $_POST['casting'],
             'synopsis' => $_POST['synopsis'],
             'duration' => $_POST['duration'],
-            'release_date' => $_POST['release'],
+            'release_date' => $_POST['release_date'],
             'id' => $_GET['id']
     ];
 
@@ -69,3 +69,16 @@ function updateMovie()
 
 };
 
+function getInfosById(){
+
+    global $db;
+
+    $movie_id = $_GET['id'];
+
+    $query = "SELECT title, categories, director, casting, synopsis, duration, release_date FROM movies where id = :id";
+    $statement = $db -> prepare($query);
+    $statement -> bindParam('id', $movie_id);
+    $statement -> execute ();
+    $_POST = (array) $statement->fetch();
+    
+}
