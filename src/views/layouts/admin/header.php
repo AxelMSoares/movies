@@ -16,12 +16,24 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarText">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link" href="#">Movies</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Utilisateurs</a>
-						</li>
+						<li class="nav-item dropdown">
+          					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          					  Films
+          					</a>
+          					<ul class="dropdown-menu">
+          					  <li><a class="dropdown-item" href="<?= $router->generate('displayMovie'); ?>">Liste des films</a></li>
+          					  <li><a class="dropdown-item" href="<?= $router->generate('editMovie'); ?>">Ajouter un film</a></li>
+          					</ul>
+        				</li>
+						<li class="nav-item dropdown">
+          					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          					  Utilisateurs
+          					</a>
+          					<ul class="dropdown-menu">
+          					  <li><a class="dropdown-item" href="#">Liste des utilisateurs</a></li>
+          					  <li><a class="dropdown-item" href="<?= $router->generate('admin_edit'); ?>">Ajouter un utilisateur</a></li>
+          					</ul>
+        				</li>
 					</ul>
 					<div class="navbar-text">
 						<a href="" class="btn btn-danger">Déconnexion</a>

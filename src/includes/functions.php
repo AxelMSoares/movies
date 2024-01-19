@@ -8,6 +8,7 @@
 */
 
 function get_header($title, $layout ='public') :void {
+    global $router;
     require '../src/views/layouts/' . $layout . '/header.php';
 } 
 
