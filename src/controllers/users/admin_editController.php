@@ -1,9 +1,39 @@
 <?php
 
-$errorsMessage = [
-    'email' => false,
-    'pwd' => false,
-    'pwd-confirm' => false
+$usersMessage = [
+    'nickname' => 
+    [
+        'class' => false,
+        'message' => false,
+        'status' => false
+    ],
+
+    'email' => 
+    [
+        'class' => false,
+        'message' => false,
+        'status' => false 
+    ],
+
+    'pwd' => 
+    [
+        'class' => false,
+        'message' => false,
+        'status' => false 
+    ],
+
+    'pwd-confirm' => 
+    [
+        'class' => false,
+        'message' => false,
+        'status' => false 
+    ],
+
+    'status' =>
+    [
+        'class' => false,
+        'message' => false
+    ]
 ];
 
 if (!empty($_POST)) {
@@ -12,15 +42,38 @@ if (!empty($_POST)) {
 
         if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
 
-            $errorsMessage['email'] = 'L\'adresse email n\'est pas valide';
+            $usersMessage['email']['class'] = 'text-danger';
+            $usersMessage['email']['message'] = 'L\'adresse email n\'est pas valide';
+            $usersMessage['email']['status'] = true;
 
         } else if (checkAlreadyExistEmail()){
 
-            $errorsMessage['email'] = 'L\'adresse email existe déjà dans la base de données.';
+            $usersMessage['email']['class'] = 'text-danger';
+            $usersMessage['email']['message'] = 'L\'adresse email existe déjà dans la base de données.';
+            $usersMessage['email']['status'] = true;
 
         }
 
     }
+
+    // Rules for nickname field
+    if (!empty($_POST['nickname'])){
+
+        if (checkAlreadyExistNickname()){
+
+            $usersMessage['nickname']['class'] = 'text-danger';
+            $usersMessage['nickname']['message'] = 'Le pseudo existe déjà dans la base de données.';
+            $usersMessage['nickname']['status'] = true;
+
+        }
+
+    } else {
+
+        $usersMessage['nickname']['class'] = 'text-danger';
+        $usersMessage['nickname']['message'] = 'Merci de renseigner un pseudo';
+        $usersMessage['nickname']['status'] = true;
+
+    };
 
     // Check pwd correspondence and force
 
@@ -30,11 +83,16 @@ if (!empty($_POST)) {
 
         if (!preg_match($pattern, $_POST['pwd'])){
 
-            $errorsMessage['pwd'] = 'Merci de respecter le format indiqué.';
+            $usersMessage['pwd']['class'] = 'text-danger';
+            $usersMessage['pwd']['message'] = 'Merci de respecter le format indiqué.';
+            $usersMessage['pwd']['status'] = true;
+
 
         } else if($_POST['pwd'] !== $_POST['pwd-confirm']) {
 
-            $errorsMessage['pwd-confirm'] = 'Les mots de passe saisis ne sont pas identiques';
+            $usersMessage['pwd-confirm']['class'] = 'text-danger';
+            $usersMessage['pwd-confirm']['message'] = 'Les mots de passe saisis ne sont pas identiques';
+            $usersMessage['pwd-confirm']['status'] = true;
 
         }
 
@@ -44,22 +102,49 @@ if (!empty($_POST)) {
     // Save user in the database
 
 
-        if (!empty($_POST['email']) && !empty($_POST['pwd']) && !empty($_POST['pwd-confirm'])){
+    if (!empty($_POST['email']) && !empty($_POST['email']) && !empty($_POST['pwd']) && !empty($_POST['pwd-confirm'])){
 
-            if (!$errorsMessage['email'] && !$errorsMessage['pwd'] && !$errorsMessage['pwd']){
+        if(!isset($_GET['id'])){
 
-                if(!empty($_GET['id'])){
-                    updateUser();
-                }else {
-                    addUser();
-                }
+            if ($usersMessage['nickname']['status'] !== true &&
+            $usersMessage['email']['status'] !== true &&
+            $usersMessage['pwd']['status'] !== true &&
+            $usersMessage['pwd']['status'] !== true
+            ){
+
+                addUser();
+                alert('Utilisateur ajouté avec success', 'success');
 
             } else {
 
-               alert('Erreur lors de l\'ajout de l\'utilisateur');
+                alert('Erreur lors de l\'ajout de l\'utilisateur');
+
             }
 
+
         } else {
-            alert('Merci de remplir toutes les champs obligatoires.');
+            
+            $usersMessage['nickname']['message'] = false; 
+            $usersMessage['email']['message'] = false; 
+
+            if($usersMessage['pwd']['status'] !== true &&
+            $usersMessage['pwd']['status'] !== true) {
+
+                updateUser();
+                alert('Utilisateur modifié avec success', 'success');
+
+            } else {
+
+                alert('Erreur lors de l\'ajout de l\'utilisateur');
+
+            }
+
         }
+     
+    } else {
+
+        alert('Merci de remplir toutes les champs obligatoires.');
+
+    }
+
 }

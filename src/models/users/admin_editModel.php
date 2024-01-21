@@ -10,12 +10,13 @@ function addUser (): bool
 
     global $db;
     $data = [
+        'nickname' => $_POST['nickname'],
         'email' => $_POST['email'],
         'pwd' => password_hash($_POST['pwd'], PASSWORD_DEFAULT),
         'role_id' => 1
     ];
 
-    $sql = 'INSERT INTO users (email, pwd, role_id) values (:email, :pwd, :role_id)';
+    $sql = 'INSERT INTO users (nickname, email, pwd, role_id) values (:nickname, :email, :pwd, :role_id)';
     $query = $db -> prepare($sql);
     $query ->execute($data);
 
@@ -44,21 +45,55 @@ function checkAlreadyExistEmail(): mixed
 
 };
 
+/**
+* Check if the nickname already exists in the database
+*  
+*/
+
+function checkAlreadyExistNickname(): mixed
+{
+
+    global $db;
+    $sql = 'SELECT id FROM users WHERE nickname = :nickname';
+    $query = $db->prepare($sql);
+    $query->bindParam(':nickname', $_POST['nickname'], PDO::PARAM_STR);
+    $query->execute();
+
+    return $query -> fetch();
+
+};
+
+
 function updateUser()
 {
 
     global $db;
     $data = [
+        'nickname' => $_POST['nickname'],
         'email' => $_POST['email'],
         'pwd' => password_hash($_POST['pwd'], PASSWORD_DEFAULT),
         'id' => $_GET['id']
     ];
 
-    $sql = 'UPDATE users SET email = :email, pwd = :pwd WHERE id = :id';
+    $sql = 'UPDATE users SET nickname = :nickname, email = :email, pwd = :pwd WHERE id = :id';
     $query = $db -> prepare($sql);
     $query ->execute($data);
 
 };
+
+function getUsersInfosById(){
+    
+    global $db;
+
+    $user_id = $_GET['id'];
+
+    $query = "SELECT nickname, email FROM users where id = :id";
+    $statement = $db -> prepare($query);
+    $statement -> bindParam('id', $user_id);
+    $statement -> execute ();
+    $_POST = (array) $statement->fetch();
+    
+}
 
 
 

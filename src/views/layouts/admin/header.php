@@ -30,7 +30,7 @@
           					  Utilisateurs
           					</a>
           					<ul class="dropdown-menu">
-          					  <li><a class="dropdown-item" href="#">Liste des utilisateurs</a></li>
+          					  <li><a class="dropdown-item" href="<?= $router->generate('admin_display'); ?>">Liste des utilisateurs</a></li>
           					  <li><a class="dropdown-item" href="<?= $router->generate('admin_edit'); ?>">Ajouter un utilisateur</a></li>
           					</ul>
         				</li>
