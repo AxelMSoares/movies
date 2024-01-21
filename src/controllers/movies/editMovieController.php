@@ -104,6 +104,7 @@ if(!empty($_POST)){
 
     // If duration exists, check if the duration is numeric and over 3 numbers
     if (!empty($_POST['duration'])){
+
         if (!is_numeric($_POST['duration'])) {
 
             $moviesMessage['duration']['message'] = 'La durée du film doit être un nombre entier';
@@ -122,20 +123,37 @@ if(!empty($_POST)){
 
     
         // If Success in all the verifications, the movie is add in the database.
-    if ($moviesMessage['title']['status'] === true ||
-        $moviesMessage['synopsis']['status'] === true ||
-        $moviesMessage['release_date']['status'] === true ||
-        $moviesMessage['duration']['status'] === true)
-    {
+    
 
-        $moviesMessage['global']['message'] = 'Erreur lors de l\'insertion dans la base de données. Une des données est invalide.';
-
-    } else {
+    
         
-        if (!empty($_GET['id'])) {
+    if (isset($_GET['id'])) {
+
+        if ($moviesMessage['release_date']['status'] === true ||
+            $moviesMessage['duration']['status'] === true)
+        {
+
+            $moviesMessage['global']['message'] = 'Erreur lors de l\'insertion dans la base de données. Une des données est invalide.';
+
+        } else {
 
             updateMovie();
             $success = 'Le film a été mis a jour avec success.';
+            $moviesMessage['title']['message'] = false;
+            $moviesMessage['title']['class'] = false;
+            unset($error); 
+        }
+
+
+    } else {
+
+        if ($moviesMessage['title']['status'] === true ||
+            $moviesMessage['synopsis']['status'] === true ||
+            $moviesMessage['release_date']['status'] === true ||
+            $moviesMessage['duration']['status'] === true)
+        {
+
+            $moviesMessage['global']['message'] = 'Erreur lors de l\'insertion dans la base de données. Une des données est invalide.';
 
         } else {
 
@@ -144,6 +162,6 @@ if(!empty($_POST)){
 
         }
 
-    }
+}
 
 }
