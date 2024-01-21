@@ -42,7 +42,7 @@ if (isset($_GET['id'])){
         <p class = "<?= $usersMessage['pwd-confirm']['class'] ?>"><?= $usersMessage['pwd-confirm']['message']; ?></p>
     </div>
     <div>
-        <input type="submit" class="btn btn-success" value="Sauvegarder">
+        <input type="submit" class="btn btn-primary" value="Sauvegarder">
     </div>
 </form>
 

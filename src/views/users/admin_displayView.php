@@ -7,8 +7,8 @@
       <th scope="col">Utilisateur:</th>
       <th scope="col">Creation:</th>
       <th scope="col">Mis à jour:</th>
-      <th scope="col">Editer</th>
-      <th scope="col">Supprimer</th>
+      <th scope="col"> </th>
+      <th scope="col"> </th>
     </tr>
   </thead>
   <tbody>
@@ -18,8 +18,8 @@
           <td><?= $user['email'] ?></td>
           <td><?= $user['created'] ?></td>
           <td><?= $user['updated'] ?></td>
-          <td><a href="<?= $router->generate('admin_edit') . '/' . $user['id']?>">Editer</a></td>
-          <td><a href="<?= $user['id'] ?>">Supprimer</a></td>
+          <td><a class="card-link btn btn-primary" href="<?= $router->generate('admin_edit') . '/' . $user['id']?>">Editer</a></td>
+          <td><a class="card-link btn btn-danger" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce compte?')" href="<?= $router->generate('admin_delete') . $user['id'] ?>">Supprimer</a></td>
         </tr>
     <?php } ?>
   </tbody>
