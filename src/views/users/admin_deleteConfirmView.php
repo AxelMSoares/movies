@@ -1,20 +1,10 @@
 <?php get_header('Editer un utilisateur', 'admin'); ?>
 
-<div class="modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Etês vous certain de vouloir supprimer cet utilisateurs?</h5>
+    <a href="<?= $router -> generate ('admin_display'); ?>" class="card-link btn btn-secondary">Annuler</a>
+    <a href="<?= $router -> generate('admin_delete', ['id' => $_GET['id']]); ?>" class="card-link btn btn-danger">Supprimer</a>
   </div>
 </div>
 

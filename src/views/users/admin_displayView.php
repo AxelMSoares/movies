@@ -19,7 +19,7 @@
           <td><?= $user->created ?></td>
           <td><?= $user->updated ?></td>
           <td><a class="card-link btn btn-primary" href="<?= $router->generate('admin_edit', ['id' => $user->id]); ?>">Editer</a></td>
-          <td><a class="card-link btn btn-danger" href="<?= $router->generate('admin_delete', ['id' => $user->id]); ?>">Supprimer</a></td>
+          <td><a class="card-link btn btn-danger" href="<?= $router->generate('admin_deleteConfirm', ['id' => $user->id]); ?>">Supprimer</a></td>
         </tr>
     <?php } ?>
   </tbody>

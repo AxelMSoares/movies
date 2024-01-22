@@ -11,7 +11,7 @@ $router->map( 'GET', $admin . '/utilisateurs', 'users/admin_display', 'admin_dis
 $router->map( 'GET|POST', $admin . '/utilisateurs/editer/', 'users/admin_edit', ''); // 2 / 5
 $router->map( 'GET|POST', $admin . '/utilisateurs/editer/[uuid:id]', 'users/admin_edit', 'admin_edit'); // 2 / 5
 $router->map( 'GET', $admin . '/utilisateurs/supprimer/[uuid:id]', 'users/admin_delete', 'admin_delete'); // 6
-$router->map( 'GET', $admin . '/utilisateurs/supprimer-confirm', 'users/admin_deleteConfirm', 'admin_deleteConfirm'); // 6
+$router->map( 'GET', $admin . '/utilisateurs/supprimer-confirm/[uuid:id]', 'users/admin_deleteConfirm', 'admin_deleteConfirm'); // 6
 
 // Movies
 $router->map( 'GET', $admin . '/films', 'movies/displayMovie', 'displayMovie');
