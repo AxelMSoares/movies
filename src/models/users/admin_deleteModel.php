@@ -11,6 +11,7 @@ function deleteUserById(){
     $statement -> bindParam('id', $user_id);
     $statement -> execute();
 
+    alert('Utilisateur supprimé avec success');
     header('location:' . $router->generate('admin_display'));
     die;
 

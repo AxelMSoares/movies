@@ -1,10 +1,15 @@
 <?php
 
+/**
+* Get all users
+*/
+function getUsers () {
 
+    global $db;
 
-$query = 'SELECT * FROM users';
-$statement = $db -> prepare($query);
-$statement -> execute();
-$users = $statement -> fetchAll(PDO::FETCH_ASSOC);
-
+    $query = 'SELECT id, email, nickname, updated, created FROM users';
+    $statement = $db -> prepare($query);
+    $statement -> execute();
+    return $statement -> fetchAll();
+}
 
