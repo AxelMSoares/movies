@@ -16,12 +16,29 @@ function addUser (): bool
         'role_id' => 1
     ];
 
-    $sql = 'INSERT INTO users (nickname, email, pwd, role_id) values (:nickname, :email, :pwd, :role_id)';
-    $query = $db -> prepare($sql);
-    $query ->execute($data);
+    try {
 
+        $sql = 'INSERT INTO users (nickname, email, pwd, role_id) values (:nickname, :email, :pwd, :role_id)';
+        $query = $db -> prepare($sql);
+        $query ->execute($data);
+        alert('Un utilisateur a bien été ajouté.', 'success');
 
-    return true;
+    } catch (PDOException $e){
+
+        if ($_ENV['DEBUG'] == 'true'){
+
+            dump($e->getMessage());
+            die;
+            
+        } else {
+
+            alert('Une erreur est survenue. Merci de réésayer plus tard','danger');
+
+        }
+
+    }
+
+    
 };
 
 

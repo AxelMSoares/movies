@@ -12,5 +12,6 @@ function deleteMovie(){
     $statement -> execute();
 
     header('Location:' . $router->generate('displayMovie'));
+    die;
 
 };

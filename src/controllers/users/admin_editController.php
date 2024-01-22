@@ -104,40 +104,27 @@ if (!empty($_POST)) {
 
     if (!empty($_POST['email']) && !empty($_POST['email']) && !empty($_POST['pwd']) && !empty($_POST['pwd-confirm'])){
 
-        if(!isset($_GET['id'])){
 
-            if ($usersMessage['nickname']['status'] !== true &&
-            $usersMessage['email']['status'] !== true &&
-            $usersMessage['pwd']['status'] !== true &&
-            $usersMessage['pwd']['status'] !== true
-            ){
+        if ($usersMessage['nickname']['status'] !== true &&
+        $usersMessage['email']['status'] !== true &&
+        $usersMessage['pwd']['status'] !== true &&
+        $usersMessage['pwd']['status'] !== true
+        ){
+            if(!empty($_GET['id'])){
 
-                addUser();
-                alert('Utilisateur ajouté avec success', 'success');
+                updateUser();
+                alert('Un utilisateur a bien été modifié', 'success');
 
             } else {
 
-                alert('Erreur lors de l\'ajout de l\'utilisateur');
-
+                addUser('Un utilisateur a été ajouté avec success');
+                
             }
 
 
         } else {
-            
-            $usersMessage['nickname']['message'] = false; 
-            $usersMessage['email']['message'] = false; 
 
-            if($usersMessage['pwd']['status'] !== true &&
-            $usersMessage['pwd']['status'] !== true) {
-
-                updateUser();
-                alert('Utilisateur modifié avec success', 'success');
-
-            } else {
-
-                alert('Erreur lors de l\'ajout de l\'utilisateur');
-
-            }
+            alert('Erreur lors de l\'ajout de l\'utilisateur', 'danger');
 
         }
      

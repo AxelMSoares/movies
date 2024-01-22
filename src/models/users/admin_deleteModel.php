@@ -1,14 +1,17 @@
 <?php
 
 function deleteUserById(){
+    global $router;
+    global $db;
     
     $user_id = $_GET['id'];
 
-    global $db;
     $query = 'DELETE FROM users where id = :id';
     $statement = $db -> prepare($query);
     $statement -> bindParam('id', $user_id);
     $statement -> execute();
 
+    header('location:' . $router->generate('admin_display'));
+    die;
 
 }
