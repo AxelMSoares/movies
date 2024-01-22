@@ -18,13 +18,26 @@ function addMovie() : void
             'release_date' => $_POST['release_date']
         ];
 
-    $sql = "INSERT INTO movies (title, categories, director, casting, synopsis, duration, release_date) VALUES (:title, :categories, :director, :casting, :synopsis, :duration, :release_date)";
-    $query = $db->prepare($sql);
     try {
+
+        $sql = "INSERT INTO movies (title, categories, director, casting, synopsis, duration, release_date) VALUES (:title, :categories, :director, :casting, :synopsis, :duration, :release_date)";
+        $query = $db->prepare($sql);
         $query->execute($movies);
+        alert('Le film a bien été ajouté.', 'success');
+
     } catch (PDOException $e) {
-        dump($e->getMessage());
-        die;
+
+        if ($_ENV['DEBUG'] == 'true'){
+
+            dump($e->getMessage());
+            die;
+
+        } else {
+
+            alert('Une erreur est survenue. Merci de réessayer plus tard','danger');
+
+        }
+
     }
 }
 
@@ -37,6 +50,17 @@ function checkAlreadyExistMovie(): mixed
 {
 
     global $db;
+
+    if (!empty($_GET['id'])) {
+
+        $title = getMovie()->title;
+
+        if($title === $_POST['title']){
+            return false;
+        }
+
+    }
+
     $sql = 'SELECT id FROM movies WHERE title = :title';
     $query = $db->prepare($sql);
     $query->bindParam(':title', $_POST['title'], PDO::PARAM_STR);
@@ -63,22 +87,55 @@ function updateMovie()
             'id' => $_GET['id']
     ];
 
-    $sql = 'UPDATE movies SET title = :title, categories = :categories, director = :director, casting = :casting, synopsis = :synopsis, duration = :duration, release_date = :release_date WHERE id = :id';
-    $query = $db -> prepare($sql);
-    $query ->execute($data);
+    try {
+        $sql = 'UPDATE movies SET title = :title, categories = :categories, director = :director, casting = :casting, synopsis = :synopsis, duration = :duration, release_date = :release_date WHERE id = :id';
+        $query = $db -> prepare($sql);
+        $query ->execute($data);
+
+    } catch (PDOException $e) {
+
+        if ($_ENV['DEBUG'] == 'true'){
+
+            dump($e->getMessage());
+            die;
+
+        } else {
+
+            alert('Une erreur est survenue. Merci de réessayer plus tard','danger');
+
+        }
+
+    }
 
 };
 
-function getInfosById(){
+function getMovie(){
 
     global $db;
 
     $movie_id = $_GET['id'];
 
-    $query = "SELECT title, categories, director, casting, synopsis, duration, release_date FROM movies where id = :id";
-    $statement = $db -> prepare($query);
-    $statement -> bindParam('id', $movie_id);
-    $statement -> execute ();
-    $_POST = (array) $statement->fetch();
+    try {
+
+        $query = "SELECT title, categories, director, casting, synopsis, duration, release_date FROM movies where id = :id";
+        $statement = $db -> prepare($query);
+        $statement -> bindParam('id', $movie_id);
+        $statement -> execute ();
+        return $statement->fetch();
+
+    } catch (PDOException $e) {
+
+        if ($_ENV['DEBUG'] == 'true'){
+
+            dump($e->getMessage());
+            die;
+
+        } else {
+
+            alert('Une erreur est survenue. Merci de réessayer plus tard','danger');
+
+        }
+
+    }
     
 }

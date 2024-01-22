@@ -2,10 +2,6 @@
 
 get_header('Créer un film', 'admin') ; 
 
-if (isset($_GET['id'])){
-    getInfosById();
-}
-
 ?>
 
 <div class="container mb-5" style="max-width: 400px">

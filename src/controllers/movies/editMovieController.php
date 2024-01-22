@@ -127,41 +127,33 @@ if(!empty($_POST)){
 
     
         
-    if (isset($_GET['id'])) {
 
-        if ($moviesMessage['release_date']['status'] === true ||
-            $moviesMessage['duration']['status'] === true)
+        if ($moviesMessage['release_date']['status'] !== true &&
+            $moviesMessage['title']['status'] !== true &&
+            $moviesMessage['synopsis']['status'] !== true &&
+            $moviesMessage['duration']['status'] !== true)
         {
 
-            $moviesMessage['global']['message'] = 'Erreur lors de l\'insertion dans la base de données. Une des données est invalide.';
+            if(!empty($_GET['id'])) {
 
-        } else {
+                updateMovie();
+                alert('Le film a été mis a jour avec success.', 'success');
+                header('location: ' . $router->generate('displayMovie'));
+                die;
 
-            updateMovie();
-            $success = 'Le film a été mis a jour avec success.';
-            $moviesMessage['title']['message'] = false;
-            $moviesMessage['title']['class'] = false;
-            unset($error); 
-        }
+            } else {
 
+                addMovie();
+                alert('Le film a été ajouté avec success.', 'success');
 
-    } else {
-
-        if ($moviesMessage['title']['status'] === true ||
-            $moviesMessage['synopsis']['status'] === true ||
-            $moviesMessage['release_date']['status'] === true ||
-            $moviesMessage['duration']['status'] === true)
-        {
-
-            $moviesMessage['global']['message'] = 'Erreur lors de l\'insertion dans la base de données. Une des données est invalide.';
-
-        } else {
-
-            addMovie();
-            $success = 'Le film a été ajouté avec success.';
+            }
 
         }
 
-}
+} else if(!empty($_GET['id'])) {
+
+    // A changer et adapter à films
+    $_POST = (array) getMovie();
 
 }
+
