@@ -5,7 +5,7 @@
 * Add a user in the database
 */
 
-function addUser (): bool
+function addUser ()
 {
 
     global $db;
@@ -29,7 +29,7 @@ function addUser (): bool
 
             dump($e->getMessage());
             die;
-            
+
         } else {
 
             alert('Une erreur est survenue. Merci de réésayer plus tard','danger');
@@ -81,6 +81,9 @@ function checkAlreadyExistNickname(): mixed
 };
 
 
+/**
+* Update a user where id = :id
+*/
 function updateUser()
 {
 
@@ -92,10 +95,27 @@ function updateUser()
         'id' => $_GET['id']
     ];
 
-    $sql = 'UPDATE users SET nickname = :nickname, email = :email, pwd = :pwd WHERE id = :id';
-    $query = $db -> prepare($sql);
-    $query ->execute($data);
+    try {
+        
+        $sql = 'UPDATE users SET nickname = :nickname, email = :email, pwd = :pwd WHERE id = :id';
+        $query = $db -> prepare($sql);
+        $query ->execute($data);
+        alert('L\'tilisateur a bien été modifié.', 'success');
 
+    } catch (PDOException $e){
+
+        if ($_ENV['DEBUG'] == 'true'){
+
+            dump($e->getMessage());
+            die;
+
+        } else {
+
+            alert('Une erreur est survenue. Merci de réésayer plus tard','danger');
+
+        }
+
+    }
 };
 
 function getUsersInfosById(){
