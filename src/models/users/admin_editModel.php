@@ -32,7 +32,7 @@ function addUser ()
 
         } else {
 
-            alert('Une erreur est survenue. Merci de réésayer plus tard','danger');
+            alert('Une erreur est survenue. Merci de réessayer plus tard','danger');
 
         }
 
@@ -100,7 +100,7 @@ function updateUser()
         $sql = 'UPDATE users SET nickname = :nickname, email = :email, pwd = :pwd WHERE id = :id';
         $query = $db -> prepare($sql);
         $query ->execute($data);
-        alert('L\'tilisateur a bien été modifié.', 'success');
+        alert('L\'utilisateur a bien été modifié.', 'success');
 
     } catch (PDOException $e){
 
@@ -111,25 +111,43 @@ function updateUser()
 
         } else {
 
-            alert('Une erreur est survenue. Merci de réésayer plus tard','danger');
+            alert('Une erreur est survenue. Merci de réessayer plus tard','danger');
 
         }
 
     }
 };
 
+/**
+* Get users info by id
+*/
 function getUsersInfosById(){
     
     global $db;
 
     $user_id = $_GET['id'];
 
+    try {
     $query = "SELECT nickname, email FROM users where id = :id";
     $statement = $db -> prepare($query);
     $statement -> bindParam('id', $user_id);
     $statement -> execute ();
     $_POST = (array) $statement->fetch();
-    
+
+    } catch (PDOException $e) {
+
+        if ($_ENV['DEBUG'] == 'true'){
+
+            dump($e->getMessage());
+            die;
+
+        } else {
+
+            alert('Une erreur est survenue. Merci de réessayer plus tard','danger');
+
+        }
+
+    }
 }
 
 

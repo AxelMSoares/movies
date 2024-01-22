@@ -113,14 +113,16 @@ if (!empty($_POST)) {
             if(!empty($_GET['id'])){
 
                 updateUser();
-                alert('Un utilisateur a bien été modifié', 'success');
 
             } else {
 
-                addUser('Un utilisateur a été ajouté avec success');
+                addUser();
                 
             }
 
+            // Redirect to user list
+            header('location: ' . $router->generate('admin_display'));
+            die;
 
         } else {
 
