@@ -1,14 +1,16 @@
 <?php
 $admin = '/' . $_ENV['ADMIN_FOLDER'];
 
+$router->addMatchTypes(['uuid' => '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}']);
+
 // Users
 $router->map( 'GET|POST', $admin . '/connexion', 'users/admin_login', ''); // 3
 $router->map( 'GET', $admin . '/deconnexion', '', ''); // 4
 $router->map( 'GET', $admin . '/mot-de-passe-oublie', '', 'lostPassword'); // 7
 $router->map( 'GET', $admin . '/utilisateurs', 'users/admin_display', 'admin_display'); // 1
 $router->map( 'GET|POST', $admin . '/utilisateurs/editer', 'users/admin_edit', 'admin_edit'); // 2 / 5
-$router->map( 'GET|POST', $admin . '/utilisateurs/editer/[i:id]', 'users/admin_edit', ''); // 2 / 5
-$router->map( 'GET', $admin . '/utilisateurs/supprimer/[i:id]', 'users/admin_delete', 'admin_delete'); // 6
+$router->map( 'GET|POST', $admin . '/utilisateurs/editer/[uuid:id]', 'users/admin_edit', ''); // 2 / 5
+$router->map( 'GET', $admin . '/utilisateurs/supprimer/[uuid:id]', 'users/admin_delete', 'admin_delete'); // 6
 
 // Movies
 $router->map( 'GET', $admin . '/films', 'movies/displayMovie', 'displayMovie');

@@ -18,7 +18,7 @@ function addUser ()
 
     try {
 
-        $sql = 'INSERT INTO users (nickname, email, pwd, role_id) values (:nickname, :email, :pwd, :role_id)';
+        $sql = 'INSERT INTO users (id, nickname, email, pwd, role_id) values (UUID(), :nickname, :email, :pwd, :role_id)';
         $query = $db -> prepare($sql);
         $query ->execute($data);
         alert('Un utilisateur a bien été ajouté.', 'success');
