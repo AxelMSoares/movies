@@ -51,8 +51,17 @@ function addUser ()
 
 function checkAlreadyExistEmail(): mixed
 {
-
     global $db;
+    if (!empty($_GET['id'])) {
+
+        $email = getUsersInfosById()->email;
+
+        if($email === $_POST['email']){
+            return false;
+        }
+
+    }
+
     $sql = 'SELECT id FROM users WHERE email = :email';
     $query = $db->prepare($sql);
     $query->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
@@ -71,6 +80,17 @@ function checkAlreadyExistNickname(): mixed
 {
 
     global $db;
+
+    if (!empty($_GET['id'])) {
+
+        $nickname = getUsersInfosById()->nickname;
+
+        if($nickname === $_POST['nickname']){
+            return false;
+        }
+
+    }
+    
     $sql = 'SELECT id FROM users WHERE nickname = :nickname';
     $query = $db->prepare($sql);
     $query->bindParam(':nickname', $_POST['nickname'], PDO::PARAM_STR);
@@ -126,13 +146,13 @@ function getUsersInfosById(){
     global $db;
 
     $user_id = $_GET['id'];
-
+    
     try {
     $query = "SELECT nickname, email FROM users where id = :id";
     $statement = $db -> prepare($query);
     $statement -> bindParam('id', $user_id);
     $statement -> execute ();
-    $_POST = (array) $statement->fetch();
+    return $statement->fetch();
 
     } catch (PDOException $e) {
 

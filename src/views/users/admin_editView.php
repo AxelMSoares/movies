@@ -1,11 +1,13 @@
-<?php get_header('Editer un utilisateur', 'admin'); 
+<?php 
+
+get_header('Editer un utilisateur', 'admin'); 
 
 if (isset($_GET['id'])){
-    getUsersInfosById();
     $title = 'Editer';
 } else {
     $title = 'Ajouter';
-}
+};
+
 ?>
 
 <h1 class="mb-4"><?= $title ?> un compte: </h1>

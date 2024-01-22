@@ -100,10 +100,7 @@ if (!empty($_POST)) {
     }
 
     // Save user in the database
-
-
-    if (!empty($_POST['email']) && !empty($_POST['email']) && !empty($_POST['pwd']) && !empty($_POST['pwd-confirm'])){
-
+    if (!empty($_POST['nickname']) && !empty($_POST['email']) && !empty($_POST['pwd']) && !empty($_POST['pwd-confirm'])){
 
         if ($usersMessage['nickname']['status'] !== true &&
         $usersMessage['email']['status'] !== true &&
@@ -129,11 +126,14 @@ if (!empty($_POST)) {
             alert('Erreur lors de l\'ajout de l\'utilisateur', 'danger');
 
         }
-     
     } else {
-
+        
         alert('Merci de remplir toutes les champs obligatoires.');
 
     }
+     
+} else if(!empty($_GET['id'])){
+
+        $_POST = (array) getUsersInfosById();
 
 }
