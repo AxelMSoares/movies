@@ -18,8 +18,10 @@ session_start();
 require (SRC . 'config/database.php');
 require (SRC . 'includes/forms.php');
 
+
 // Load router
 $router = new AltoRouter();
+
 
 require (SRC . 'routes/public.php');
 require (SRC . 'routes/admin.php');
@@ -27,6 +29,8 @@ require (SRC . 'routes/admin.php');
 $match = $router->match();
 
 require (SRC . 'includes/functions.php');
+logoutTimer();
+
 if (!empty($match['target'])){
 
     checkAdmin($match, $router);

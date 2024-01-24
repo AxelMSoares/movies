@@ -23,3 +23,13 @@ function checkUserAccess()
 
 }
 
+function saveLastLogin(string $userId) : void
+{
+
+    global $db;
+    $sql = 'UPDATE users SET lastLogin = NOW() WHERE id = :id';
+    $query = $db->prepare($sql);
+    $query->execute(['id' => $userId]);
+
+}
+

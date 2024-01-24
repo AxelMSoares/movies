@@ -79,11 +79,59 @@ function checkAdmin(array $match, AltoRouter $router){
 
 
     $existAdmin = strpos($match['target'], 'admin_');
-    if ($existAdmin !== false && empty($_SESSION['user'])) {
+    if ($existAdmin !== false && empty($_SESSION['user']['id'])) {
 
         header('location: ' . $router->generate('login'));
         die;
 
     }
     
+}
+
+/**
+* Check if the email already exists in the database
+*  
+*/
+
+function checkAlreadyExistEmail(): mixed
+{
+    global $db;
+    if (!empty($_GET['id'])) {
+
+        $email = getUsersInfosById()->email;
+
+        if($email === $_POST['email']){
+            return false;
+        }
+
+    }
+
+    $sql = 'SELECT id FROM users WHERE email = :email';
+    $query = $db->prepare($sql);
+    $query->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
+    $query->execute();
+
+    return $query -> fetch();
+
+};
+
+function logoutTimer ()
+{
+    global $router;
+
+    if (!empty($_SESSION['user']['lastLogin'])) {
+        $expireHour = 1;
+
+        $now = new DateTime();
+        $now->setTimezone(new DateTimeZone('Europe/Paris'));
+
+        $lastLogin = new DateTime($_SESSION['user']['lastLogin']);
+
+        if ($now->diff($lastLogin)->h >= $expireHour) {
+            unset($_SESSION['user']);
+            alert('Vous avez été déconnecté pour inactivité', 'danger');
+            header('Location: ' . $router->generate('login'));
+            die;
+        }
+    }
 }

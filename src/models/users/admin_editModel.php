@@ -42,35 +42,6 @@ function addUser ()
 };
 
 
-    
-
-/**
-* Check if the email already exists in the database
-*  
-*/
-
-function checkAlreadyExistEmail(): mixed
-{
-    global $db;
-    if (!empty($_GET['id'])) {
-
-        $email = getUsersInfosById()->email;
-
-        if($email === $_POST['email']){
-            return false;
-        }
-
-    }
-
-    $sql = 'SELECT id FROM users WHERE email = :email';
-    $query = $db->prepare($sql);
-    $query->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
-    $query->execute();
-
-    return $query -> fetch();
-
-};
-
 /**
 * Check if the nickname already exists in the database
 *  

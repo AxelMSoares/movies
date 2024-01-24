@@ -2,18 +2,34 @@
 
 if (!empty($_POST['email']) && !empty($_POST['pwd'])){
 
-    $accessUser = checkUserAccess();
-    if (!empty($accessUser)) {
-        
+    if (checkAlreadyExistEmail()){
+        $accessUser = checkUserAccess();
+        if (!empty($accessUser)) {
 
-        $_SESSION['user'] = $accessUser;
-        alert('Vous êtes connecté', 'success');
-        header ('Location: ' . $router->generate('displayMovie'));
-        die;
+
+            $_SESSION['user'] = 
+            [
+                'id'=> $accessUser,
+                'lastLogin' => date('Y-m-d H:i:s')
+                
+            ];
+
+            saveLastLogin($accessUser);
+
+            alert('Vous êtes connecté', 'success');
+            header ('Location: ' . $router->generate('displayMovie'));
+            die;
+
+        } else {
+
+            alert('Identifiants incorrects');
+
+        }
 
     } else {
 
         alert('Identifiants incorrects');
 
     }
+    
 }
