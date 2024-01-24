@@ -5,7 +5,7 @@ $router->addMatchTypes(['uuid' => '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-
 
 // Users
 $router->map( 'GET|POST', $admin . '/connexion', 'users/login', 'login'); // 3
-$router->map( 'GET', $admin . '/deconnexion', '', ''); // 4
+$router->map( 'GET', $admin . '/deconnexion', 'users/logout', 'logout'); // 4
 $router->map( 'GET', $admin . '/mot-de-passe-oublie', '', 'lostPassword'); // 7
 $router->map( 'GET', $admin . '/utilisateurs', 'users/admin_display', 'admin_display'); // 1
 $router->map( 'GET|POST', $admin . '/utilisateurs/editer/', 'users/admin_edit', ''); // 2 / 5

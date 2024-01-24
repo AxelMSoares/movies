@@ -77,14 +77,13 @@ function validateDate($date, $format = 'Y-m-d') : bool
 
 function checkAdmin(array $match, AltoRouter $router){
 
+
     $existAdmin = strpos($match['target'], 'admin_');
-    if ($existAdmin !== false) {
+    if ($existAdmin !== false && empty($_SESSION['user'])) {
 
         header('location: ' . $router->generate('login'));
         die;
 
     }
-    // dump($existAdmin);
-    // die;
-
+    
 }
