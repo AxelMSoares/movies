@@ -67,3 +67,24 @@ function validateDate($date, $format = 'Y-m-d') : bool
     // Retourne true si la date est valide et correspond au format, false sinon
     return $d && $d->format($format) === $date;
 }
+
+
+/**
+ * Check if the user is logged in
+ * @param array $match
+ * @param AltoRouter $router The router
+ */
+
+function checkAdmin(array $match, AltoRouter $router){
+
+    $existAdmin = strpos($match['target'], 'admin_');
+    if ($existAdmin !== false) {
+
+        header('location: ' . $router->generate('login'));
+        die;
+
+    }
+    // dump($existAdmin);
+    // die;
+
+}
