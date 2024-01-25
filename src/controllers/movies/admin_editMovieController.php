@@ -152,7 +152,6 @@ if(!empty($_POST)){
 
 } else if(!empty($_GET['id'])) {
 
-    // A changer et adapter à films
     $_POST = (array) getMovie();
 
 }

@@ -135,3 +135,40 @@ function logoutTimer ()
         }
     }
 }
+
+
+/**
+*   Clean a text for insert into the database
+ */
+function cleanText(string $text){
+
+    // Suppression des espaces vides en debut et fin de chaque ligne
+	$text = preg_replace("#^[\t\f\v ]+|[\t\f\v ]+$#m",'',$text);
+
+    // Remplacement des caractères accentués par leurs équivalents non accentués
+	$text = htmlentities($text, ENT_NOQUOTES, 'utf-8');
+	$text = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $text);
+	$text = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $text); // pour les ligatures e.g. 'œ'
+	$text = html_entity_decode($text); 
+	
+
+    // Transforme tout le texte en minuscule
+    $text = mb_strtolower($text, 'UTF-8');
+
+    // Remplace les tabulations par des espaces
+	$text = preg_replace("#\h#u", " ", $text);
+
+
+    // Remplace les espaces multiples par des espaces simples
+	$text = preg_replace('#[" "]{2,}#',' ',$text);
+
+	// Remplace 1 entrée (\r\n) par 1 espace
+	$text = str_replace(array("\r","\n"),' ',$text);
+
+	// Supprime toutes les balises html
+	$text = strip_tags($text);
+
+
+    return $text;
+
+}

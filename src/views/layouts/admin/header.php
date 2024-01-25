@@ -23,6 +23,7 @@
           					<ul class="dropdown-menu">
           					  <li><a class="dropdown-item" href="<?= $router->generate('displayMovie'); ?>">Liste des films</a></li>
           					  <li><a class="dropdown-item" href="<?= $router->generate('editMovie'); ?>">Ajouter un film</a></li>
+          					  <li><a class="dropdown-item" href="<?= $router->generate('categories'); ?>">Catégories</a></li>
           					</ul>
         				</li>
 						<li class="nav-item dropdown">
