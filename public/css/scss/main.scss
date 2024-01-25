@@ -61,6 +61,7 @@ header{
 
     .search{
         position: relative;
+        margin-right: 350px;
     }
 
     .search .searchLogo{
@@ -87,7 +88,7 @@ header{
 
 
     .connection{
-        display: flex;
+        display: none;
         flex-wrap: wrap;
         align-items: center;
     }

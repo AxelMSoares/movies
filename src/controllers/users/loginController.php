@@ -1,35 +1,55 @@
 <?php 
 
-if (!empty($_POST['email']) && !empty($_POST['pwd'])){
-
-    if (checkAlreadyExistEmail()){
-        $accessUser = checkUserAccess();
-        if (!empty($accessUser)) {
+if (!empty($_POST['email']) && !empty($_POST['pwd'])) {
 
 
-            $_SESSION['user'] = 
-            [
-                'id'=> $accessUser,
-                'lastLogin' => date('Y-m-d H:i:s')
-                
-            ];
+    if (!empty($_POST['nickname'])) {
 
-            saveLastLogin($accessUser);
+        // Honeyspot
+        alert('Bienvenue admin', 'success');
+        header ('Location: http://www.google.com');
+        
 
-            alert('Vous êtes connecté', 'success');
-            header ('Location: ' . $router->generate('displayMovie'));
-            die;
+    } else if($_SESSION['login_attempts'] >= 4){
 
-        } else {
-
-            alert('Identifiants incorrects');
-
-        }
+        header('location:' . $router-> generate('home'));
+        die;
+        
 
     } else {
 
-        alert('Identifiants incorrects');
+
+        if (checkAlreadyExistEmail()) {
+
+            $accessUser = checkUserAccess();
+
+            if (!empty($accessUser)) {
+
+                // Authentification réussie
+                successfulLogin($accessUser, $router);
+
+            } else {
+
+                // Identifiants incorrects
+                alert('Identifiants incorrects');
+                failedLogin();
+
+            }
+
+        } else {
+
+            // Identifiants incorrects
+            alert('Identifiants incorrects');
+            failedLogin();
+
+        }
 
     }
-    
+
+}
+
+if (!isset($_SESSION['login_attempts'])){
+
+    $_SESSION['login_attempts'] = 0;
+            
 }

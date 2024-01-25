@@ -13,7 +13,7 @@
     <header>
         <div class="upperHeader">
             <div class="headerWrapper">
-                <div><a href="index.php" class="logo"><h1>Great Movies</h1></a></div>
+                <div><a href="<?= $router->generate('home') ?>" class="logo"><h1>Great Movies</h1></a></div>
                 <div class="search">
                     <form action="#" method="get">
                         <input type="text" class="searchBar" name="search" id="search">

@@ -8,7 +8,7 @@
 // $router->map( 'GET','/mot-de-passe-oublie', 'forgottenPassword.php');
 
 // Movies
-$router->map( 'GET','/', 'home');
+$router->map( 'GET|POST','/', 'home', 'home');
 $router->map( 'GET','/recherche', 'search.php');
 $router->map( 'GET','/details/[i:id]', 'details.php');
 $router->map( 'GET','/dernieres-sorties', 'releases.php');
