@@ -1,0 +1,97 @@
+header{
+    .upperHeader{
+        background-color:var(--primary-color);
+        color: var(--defaut-color);
+        height: 100px;
+        padding-top: 10px;
+    }
+
+    
+    .upperHeader a{
+        text-decoration: none;
+        color: var(--defaut-color);
+    }
+
+    .headerWrapper{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1400px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-left: 100px;
+    }
+
+    .logo h1{
+        font-size: 34px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-right: 100px;
+        margin-top: 15px;
+    }
+
+    .search{
+        position: relative;
+        margin-right: 400px;
+        margin-top: 15px;
+    }
+
+    .search .searchLogo{
+        position: absolute;
+        right: 0px;
+        top: 4px;
+        background-color: var(--background-color);
+        border-radius: 10px;
+        border: 0px;
+        padding: 0px 10px;
+    }
+
+    .search .searchLogo img{
+        width: 20px;
+        height: 20px;
+    }
+
+
+    .searchBar{
+        width: 450px;
+        border-radius: 10px;
+        height: 30px;
+    }
+
+
+    .connection{
+        display: none;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .connection img{
+        margin-left: 200px;
+        margin-right: 35px;
+        width: 50px;
+    }
+
+    .connection a{
+        margin: 10px 0;
+    }
+
+    .connectionLinks{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 700;
+        margin-right: 120px;
+    }
+
+    .bottomHeader{
+        height: 60px;
+        background-color: var(--second-color);
+    }
+
+}

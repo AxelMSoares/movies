@@ -7,13 +7,16 @@
 // $router->map( 'GET','/profil', 'profile.php');
 // $router->map( 'GET','/mot-de-passe-oublie', 'forgottenPassword.php');
 
+$router->addMatchTypes(['slug' => '[a-z0-9]+(?:-[a-z0-9]+)*']);
+
 // Movies
-$router->map( 'GET|POST','/', 'home', 'home');
-$router->map( 'GET','/recherche', 'search.php');
-$router->map( 'GET','/details/[i:id]', 'details.php');
-$router->map( 'GET','/dernieres-sorties', 'releases.php');
-$router->map( 'GET','/mieux-votes', 'rated.php');
+$router->map('GET|POST','/', 'home', 'home');
+$router->map('GET|POST','/homeTwig', 'homeTwig', 'homeTwig');
+$router->map('GET','/recherche', 'search.php');
+$router->map('GET','/film/[slug:slug]', 'detailsMovie', 'details');
+$router->map('GET','/dernieres-sorties', 'releases.php');
+$router->map('GET','/mieux-votes', 'rated.php');
 
 // Pages
-$router->map( 'GET','/politique-confidentialite', 'privacy.php');
-$router->map( 'GET','/mentions-legales', 'legalNotice.php');
+$router->map('GET','/politique-confidentialite', 'privacy.php');
+$router->map('GET','/mentions-legales', 'legalNotice.php');

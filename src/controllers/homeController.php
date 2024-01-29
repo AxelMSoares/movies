@@ -1,1 +1,4 @@
-Controller home 
+<?php 
+
+$data ['movies'] = getMovies();
+

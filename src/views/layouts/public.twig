@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} | Movies</title>
+    <link rel="stylesheet" href="../public/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div id:"logo">
+            <a href="">
+                <img src="" alt="logo">
+            </a>
+        </div>
+        <div class="upperHeader">
+            <div class="headerWrapper">
+                <div><a href="<?= $router->generate('home') ?>" class="logo"><h1>Great Movies</h1></a></div>
+                <div class="search">
+                    <form action="#" method="get">
+                        <input type="text" class="searchBar" name="search" id="search">
+                        <button class="searchLogo"><img   src="../public/images/searchLogo.svg" alt="search logo"></button>
+                    </form>
+                </div>
+                <div class="connection">
+                    <img src="../public/images/userLogo.svg" alt="User Logo">
+                    <div class="connectionLinks">
+                        <a href="">Connexion</a>
+                        <a href="">Créer un Compte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottomHeader">
+            <div class="headerWrapper"></div>
+        </div>
+    </header>
+    {% block content %}{% endblock %}
+    <footer>
+        <div class="footer">
+            <div class="footerWrapper">
+                <ul>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">Conditions d'utilisation</a></li>
+                    <li><a href="">Politique de Privacité</a></li>
+                </ul>
+                <ul>
+                    <li><a href="">Qui sommes nous?</a></li>
+                    <li><a href="">Notre Equipe</a></li>
+                    <li><a href="">Postuler</a></li>
+                    <li><a href="">Votre avis</a></li>
+                </ul>
+                <div>
+                    <p>Reseaux Sociaux:</p>
+                    <ul class="social">
+                            <li><a href="https://www.facebook.com" target="_blank"><img src="../public/images/logo_facebook.svg" alt="facebook"></a></li>
+                            <li><a href="https://www.instagram.com" target="_blank"><img src="../public/images/logo_instagram.svg" alt="instagram"></a></li>
+                            <li><a href="https://www.twitter.com" target="_blank"><img src="../public/images/logo_twitter-x.svg" alt="twitter_x"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <h3>Great Movies Copyright 2023</h3>
+        </div>
+    </footer>
+</body>
+</html>

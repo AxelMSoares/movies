@@ -14,12 +14,12 @@
   <tbody>
     <?php foreach ($users as $user) { ?>
         <tr>
-          <td><?= $user->nickname ?></td>
-          <td><?= $user->email ?></td>
-          <td><?= $user->created ?></td>
-          <td><?= $user->updated ?></td>
-          <td><a class="card-link btn btn-primary" href="<?= $router->generate('admin_edit', ['id' => $user->id]); ?>">Editer</a></td>
-          <td><a class="card-link btn btn-danger" href="<?= $router->generate('admin_deleteConfirm', ['id' => $user->id]); ?>">Supprimer</a></td>
+          <td><?= htmlentities($user->nickname) ?></td>
+          <td><?= htmlentities($user->email) ?></td>
+          <td><?= htmlentities($user->created) ?></td>
+          <td><?= htmlentities($user->updated) ?></td>
+          <td><a class="card-link btn btn-primary" href="<?= $router->generate('admin_edit', ['id' => htmlentities($user->id)]); ?>">Editer</a></td>
+          <td><a class="card-link btn btn-danger" href="<?= $router->generate('admin_deleteConfirm', ['id' => htmlentities($user->id)]); ?>">Supprimer</a></td>
         </tr>
     <?php } ?>
   </tbody>

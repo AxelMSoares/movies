@@ -1,0 +1,22 @@
+{% extends 'layouts/public.twig' %}
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+
+<div id="home">
+    <h1 class="title-main">Les meilleurs films</h1>
+    <div id="movies">
+    
+        {% for movie in movies %}
+            <article>
+                <a href="{{ getUrl('details', { 'slug' : movie.slug }) }}">
+                    <h2> {{ movie.title }} </h2>
+                    <img src="{{ movie.poster }}" alt="{{ movie.title }}"> 
+                </a>
+            </article>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

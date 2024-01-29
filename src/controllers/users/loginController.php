@@ -12,9 +12,8 @@ if (!empty($_POST['email']) && !empty($_POST['pwd'])) {
 
     } else if($_SESSION['login_attempts'] >= 4){
 
-        header('location:' . $router-> generate('home'));
-        die;
-        
+        alert('Trop de tentatives de connexion. Réessayez dans 5 minutes');
+        // Rajouter un reset login_attempts avec un timer.
 
     } else {
 
