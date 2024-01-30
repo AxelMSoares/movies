@@ -3,20 +3,31 @@
 
 {% block content %}
 
-<div id="home">
-    <h1 class="title-main">Les meilleurs films</h1>
-    <div id="movies">
-    
-        {% for movie in movies %}
-            <article>
-                <a href="{{ getUrl('details', { 'slug' : movie.slug }) }}">
-                    <h2> {{ movie.title }} </h2>
-                    <img src="{{ movie.poster }}" alt="{{ movie.title }}"> 
-                </a>
-            </article>
-        {% endfor %}
+<main>
+    <div class="contentWrapper">
+        <div class="bestRated">
+            <h2>Les derniers ajoutés:</h2>
+            <div class="movieBox">
 
+                {% for movie in movies %}
+                <article>
+                    <a href="{{ getUrl('details', { 'slug' : movie.slug }) }}">
+                        <img src="{{ movie.poster }}" alt="{{ movie.title }}">
+                        <h2> {{ movie.title }} </h2>
+                    </a>
+                </article>
+                {% endfor %}
+
+            </div>
+            <a class="moreBtn" href="">Voir Plus</a>
+        </div>
+        <div class="latestReleases">
+            <h2>Dernières Sorties:</h2>
+            <div class="redBG">
+                <a class="moreBtn" href="">Voir Plus</a>
+            </div>
+        </div>
     </div>
-</div>
+</main>
 
 {% endblock %}

@@ -138,18 +138,18 @@ if(!empty($_POST)){
                     imageResize($targetToSave, $imageWidth);
                 }
                 
-                if (!file_exists($targetToSave)) {
+                // if (!file_exists($targetToSave)) {
 
                     updateMovie($targetToSave);
                     alert('Le film a été mis a jour avec success.', 'success');
                     header('location: ' . $router->generate('displayMovie'));
                     die;
 
-                } else {
+                // } else {
 
-                    alert ('Une affiche avec ce nom existe déjà, merci de la renommer');
+                //     alert ('Une affiche avec ce nom existe déjà, merci de la renommer');
 
-                }
+                // }
 
             } else {
 
