@@ -16,12 +16,13 @@ function addMovie($targetToSave) : void
             'synopsis' => $_POST['synopsis'],
             'duration' => $_POST['duration'],
             'release_date' => $_POST['release_date'],
-            'poster' => $targetToSave
+            'poster' => $targetToSave,
+            'slug' => renameFile($_POST['title'])
         ];
 
     try {
 
-        $sql = "INSERT INTO movies (title, categories, director, casting, synopsis, duration, release_date, poster) VALUES (:title, :categories, :director, :casting, :synopsis, :duration, :release_date, :poster)";
+        $sql = "INSERT INTO movies (title, categories, director, casting, synopsis, duration, release_date, poster, slug) VALUES (:title, :categories, :director, :casting, :synopsis, :duration, :release_date, :poster, :slug)";
         $query = $db->prepare($sql);
         $query->execute($movies);
         alert('Le film a bien été ajouté.', 'success');
@@ -78,19 +79,51 @@ function updateMovie($targetToSave)
 {
 
     global $db;
-    $data = ['title' => $_POST['title'],
-            'categories' => $_POST['categories'],
-            'director' => $_POST['director'],
-            'casting' => $_POST['casting'],
-            'synopsis' => $_POST['synopsis'],
-            'duration' => $_POST['duration'],
-            'release_date' => $_POST['release_date'],
-            'id' => $_GET['id'],
-            'poster' => $targetToSave
+    $data = [
+        'title' => $_POST['title'],
+        'categories' => $_POST['categories'],
+        'director' => $_POST['director'],
+        'casting' => $_POST['casting'],
+        'synopsis' => $_POST['synopsis'],
+        'duration' => $_POST['duration'],
+        'release_date' => $_POST['release_date'],
+        'id' => $_GET['id'],
+        'slug' => renameFile($_POST['title'])
     ];
 
+
+    
+    if (!empty($targetToSave)) {
+
+        $data['poster'] = $targetToSave;
+        $sql = 'UPDATE movies SET 
+            title = :title,
+            categories = :categories,
+            director = :director,
+            casting = :casting,
+            synopsis = :synopsis,
+            duration = :duration,
+            release_date = :release_date,
+            poster = :poster,
+            slug = :slug 
+            WHERE id = :id';
+
+    } else {
+
+        $sql = 'UPDATE movies SET 
+            title = :title,
+            categories = :categories,
+            director = :director,
+            casting = :casting,
+            synopsis = :synopsis,
+            duration = :duration,
+            release_date = :release_date,
+            slug = :slug 
+            WHERE id = :id';
+
+    }
+
     try {
-        $sql = 'UPDATE movies SET title = :title, categories = :categories, director = :director, casting = :casting, synopsis = :synopsis, duration = :duration, release_date = :release_date, poster = :poster WHERE id = :id';
         $query = $db -> prepare($sql);
         $query ->execute($data);
 
@@ -111,6 +144,9 @@ function updateMovie($targetToSave)
 
 };
 
+/**
+* Get infos about the movies
+ */
 function getMovie(){
 
     global $db;
@@ -119,7 +155,7 @@ function getMovie(){
 
     try {
 
-        $query = "SELECT title, categories, director, casting, synopsis, duration, release_date FROM movies where id = :id";
+        $query = "SELECT title, categories, director, casting, synopsis, duration, release_date, poster FROM movies where id = :id";
         $statement = $db -> prepare($query);
         $statement -> bindParam('id', $movie_id);
         $statement -> execute ();

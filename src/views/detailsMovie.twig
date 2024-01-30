@@ -8,7 +8,6 @@
     </div>
     <div class="col">
         <h1 class="title-main">{{ movie.title }}</h1>
-        <p>{{ movie.synopsis }}</p>
 
         <ul>
             <li>Date de sortie : {{ movie.date|date('d/m/Y') }}</li>
@@ -16,6 +15,7 @@
             <li>Réalisateur : {{ movie.director }}</li>
             <li>Durée : {{ movie.duration|date('i:s')}}</li>
             <li class="note-press">Note de la presse : {{ movie.note_press }} / 5</li>
+            <li>Durée : {{ movie.synopsis }}</li>
         </ul>
     </div>
 </div>

@@ -16,7 +16,7 @@ get_header('Créer un film', 'admin') ;
 
         <div class="input-group mb-3">
           <label class="input-group-text" for="poster">Affiche:</label>
-          <input type="file" class="form-control" id="poster" name="poster">
+          <input type="file" class="form-control" id="poster" name="poster" value="<?= getValue('poster') ?>">
         </div>
         <div class="mb-3">
             <?php $error = checkEmptyFields('title'); ?>

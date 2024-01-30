@@ -1,7 +1,5 @@
 <?php
 
-use PSpell\Config;
-
 // Constants
 define ('SRC', '../src/');
 

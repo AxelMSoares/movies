@@ -7,7 +7,7 @@ if (!empty($_POST['email']) && !empty($_POST['pwd'])) {
 
         // Honeyspot
         alert('Bienvenue admin', 'success');
-        header ('Location: http://www.google.com');
+        header ('Location:' . $router -> generate('home'));
         
 
     } else if($_SESSION['login_attempts'] >= 4){

@@ -1,5 +1,8 @@
 <?php 
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
 /** 
 * Get the header
 * @param string $title The title of the page
@@ -280,4 +283,20 @@ function uploadFile(string $path, string $field, array $exts = ['jpg', 'png', 'j
 	endif;
 
 	return '';
+}
+
+/**
+* Resize image
+* @param string $imageName image direction
+* @param int $width width
+* @return void
+ */
+function imageResize(string $imageName, int $width) : void
+{
+
+	$manager = new ImageManager(new Driver());
+	$image = $manager->read($imageName);
+	$image->scale(width: $width);
+	$image->save($imageName);
+
 }

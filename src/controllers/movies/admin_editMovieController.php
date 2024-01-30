@@ -1,7 +1,8 @@
 <?php 
 
-$path = 'images/posters';
 $targetToSave = '';
+$path = 'images/posters';
+$imageWidth = 200;
 
 $moviesMessage = [
 
@@ -121,13 +122,7 @@ if(!empty($_POST)){
             $moviesMessage['duration']['status'] = true; 
 
         }
-    }    
-
-
-    // dump($_FILES);
-    // die;
-
-
+    }   
 
         // If Success in all the verifications, the movie is add in the database.
         if ($moviesMessage['release_date']['status'] !== true &&
@@ -138,16 +133,29 @@ if(!empty($_POST)){
 
             if(!empty($_GET['id'])) {
 
-                $targetToSave = uploadFile($path, 'poster');
-                updateMovie($targetToSave);
-                alert('Le film a été mis a jour avec success.', 'success');
-                header('location: ' . $router->generate('displayMovie'));
-                die;
+                if (!empty($_FILES['poster']['name'])){
+                    $targetToSave = uploadFile($path, 'poster');
+                    imageResize($targetToSave, $imageWidth);
+                }
+                
+                if (!file_exists($targetToSave)) {
+
+                    updateMovie($targetToSave);
+                    alert('Le film a été mis a jour avec success.', 'success');
+                    header('location: ' . $router->generate('displayMovie'));
+                    die;
+
+                } else {
+
+                    alert ('Une affiche avec ce nom existe déjà, merci de la renommer');
+
+                }
 
             } else {
 
+                $targetToSave = uploadFile($path, 'poster');
                 addMovie($targetToSave);
-                uploadFile($path, 'poster');
+                imageResize($targetToSave, $imageWidth);
                 alert('Le film a été ajouté avec success.', 'success');
 
             }
@@ -158,5 +166,5 @@ if(!empty($_POST)){
 
     $_POST = (array) getMovie();
 
-}
+} 
 

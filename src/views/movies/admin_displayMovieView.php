@@ -8,8 +8,8 @@ get_header('Films', 'admin') ;
 <div class="d-flex justify-content-sm-between flex-wrap">
   <?php foreach ($movies as $movie) { ?>
 
-    <div class="card m-5" style="width: 34rem;">
-      <img src="/<?= htmlentities($movie['poster']) ?>" class="card-img-top" alt="<?= htmlentities($movie['title']) ?>">
+    <div class="card m-4" style="width: 16rem;">
+      <img src="/<?= htmlentities($movie['poster']) ?>" class="img-fluid" alt="<?= htmlentities($movie['title']) ?>">
       <div class="card-body">
         <h5 class="card-title"><?= htmlentities($movie['title']) ?></h5>
       </div>
