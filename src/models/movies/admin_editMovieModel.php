@@ -5,7 +5,7 @@
 * @param $checkedHour ($_POST['release'])
 * @return void
 */
-function addMovie() : void
+function addMovie($targetToSave) : void
 {
     global $db;
     $movies = [
@@ -15,12 +15,13 @@ function addMovie() : void
             'casting' => $_POST['casting'],
             'synopsis' => $_POST['synopsis'],
             'duration' => $_POST['duration'],
-            'release_date' => $_POST['release_date']
+            'release_date' => $_POST['release_date'],
+            'poster' => $targetToSave
         ];
 
     try {
 
-        $sql = "INSERT INTO movies (title, categories, director, casting, synopsis, duration, release_date) VALUES (:title, :categories, :director, :casting, :synopsis, :duration, :release_date)";
+        $sql = "INSERT INTO movies (title, categories, director, casting, synopsis, duration, release_date, poster) VALUES (:title, :categories, :director, :casting, :synopsis, :duration, :release_date, :poster)";
         $query = $db->prepare($sql);
         $query->execute($movies);
         alert('Le film a bien été ajouté.', 'success');
@@ -73,7 +74,7 @@ function checkAlreadyExistMovie(): mixed
 /**
 * Fonction for update a movie
 */
-function updateMovie()
+function updateMovie($targetToSave)
 {
 
     global $db;
@@ -84,11 +85,12 @@ function updateMovie()
             'synopsis' => $_POST['synopsis'],
             'duration' => $_POST['duration'],
             'release_date' => $_POST['release_date'],
-            'id' => $_GET['id']
+            'id' => $_GET['id'],
+            'poster' => $targetToSave
     ];
 
     try {
-        $sql = 'UPDATE movies SET title = :title, categories = :categories, director = :director, casting = :casting, synopsis = :synopsis, duration = :duration, release_date = :release_date WHERE id = :id';
+        $sql = 'UPDATE movies SET title = :title, categories = :categories, director = :director, casting = :casting, synopsis = :synopsis, duration = :duration, release_date = :release_date, poster = :poster WHERE id = :id';
         $query = $db -> prepare($sql);
         $query ->execute($data);
 

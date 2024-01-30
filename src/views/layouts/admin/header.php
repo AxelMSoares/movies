@@ -10,7 +10,7 @@
 	<header>	
 		<nav class="navbar navbar-expand-lg bg-primary mb-4" data-bs-theme="dark">
 			<div class="container">
-				<a class="navbar-brand" href="#">Admin Movies</a>
+				<a class="navbar-brand" href="<?= $router -> generate('home') ?>">Admin Movies</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>

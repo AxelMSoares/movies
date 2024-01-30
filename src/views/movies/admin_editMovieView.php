@@ -4,8 +4,8 @@ get_header('Créer un film', 'admin') ;
 
 ?>
 
-<div class="container mb-5" style="max-width: 400px">
-    <form action="" method="post" novalidate>
+<div class="container mb-5" style="max-width: 400px" >
+    <form action="" method="post" enctype="multipart/form-data" novalidate>
 
         <?php if (isset($error)) { ?>
             <div class="m-2 alert alert-danger"><?= $error ?></div>

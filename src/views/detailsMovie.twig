@@ -12,7 +12,9 @@
 
         <ul>
             <li>Date de sortie : {{ movie.date|date('d/m/Y') }}</li>
-            <li>Durée : {{ movie.duration|date('H:i:s')}}</li>
+            <li>Casting : {{ movie.casting }}</li>
+            <li>Réalisateur : {{ movie.director }}</li>
+            <li>Durée : {{ movie.duration|date('i:s')}}</li>
             <li class="note-press">Note de la presse : {{ movie.note_press }} / 5</li>
         </ul>
     </div>

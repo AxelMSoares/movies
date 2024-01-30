@@ -1,5 +1,8 @@
 <?php 
 
+$path = 'images/posters';
+$targetToSave = '';
+
 $moviesMessage = [
 
     'title' => [
@@ -121,13 +124,12 @@ if(!empty($_POST)){
     }    
 
 
-    
+    // dump($_FILES);
+    // die;
+
+
+
         // If Success in all the verifications, the movie is add in the database.
-    
-
-    
-        
-
         if ($moviesMessage['release_date']['status'] !== true &&
             $moviesMessage['title']['status'] !== true &&
             $moviesMessage['synopsis']['status'] !== true &&
@@ -136,14 +138,16 @@ if(!empty($_POST)){
 
             if(!empty($_GET['id'])) {
 
-                updateMovie();
+                $targetToSave = uploadFile($path, 'poster');
+                updateMovie($targetToSave);
                 alert('Le film a été mis a jour avec success.', 'success');
                 header('location: ' . $router->generate('displayMovie'));
                 die;
 
             } else {
 
-                addMovie();
+                addMovie($targetToSave);
+                uploadFile($path, 'poster');
                 alert('Le film a été ajouté avec success.', 'success');
 
             }
