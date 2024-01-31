@@ -53,17 +53,23 @@ main {
 
     .bestRated{
         background-color: var(--primary-color);
-        width: 600px;
+        width: 1250px;
         border-radius: 20px;
         margin-top: 20px;
         padding: 20px 0;
         margin-bottom: 50px;
         text-align: center;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
+
+        img{
+            box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
+        }
     }
 
     .bestRated h2{
         color: var(--defaut-color);
-        font-size: 14px;
+        font-size: 16px;
         text-transform: uppercase;
         font-weight: 700;
         text-align: center;
@@ -73,7 +79,8 @@ main {
 
     .bestRated .movieBox{
         background-color: var(--second-color);
-        width: 560px;
+        max-width: 1200px;
+        width: 100%;
         border-radius: 20px;
         margin-top: 20px;
         margin-left: auto;
@@ -83,11 +90,17 @@ main {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
     }
 
     .bestRated article{
-        margin: 30px;
-        max-width: 200px;
+        margin: 20px;
+        max-width: 260px;
+        width: 100%;
+        background-color: var(--primary-color);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
     }
 
     .bestRated .leftArrow{
@@ -113,6 +126,7 @@ main {
         text-transform: uppercase;
         font-weight: 700;
         margin-bottom: 10px;
+        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
     }
 
     .latestReleases{
@@ -155,5 +169,100 @@ main {
         font-weight: 700;
         margin-bottom: 20px;
         margin-top: 80px;
+    }
+
+}
+
+.content-bg{
+    background-color: var(--primary-color);
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 4px 5px rgba(0,0,0,0.2);
+}
+
+#details-movie{
+    max-width: 800px;
+    width: 100%;
+    padding: 5px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--second-color);
+    color: var(--defaut-color);
+    border-radius: 20px;
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 1.45em;
+    box-shadow: 0px 0px 4px 5px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+
+    .wrapper{
+        background-color: var(--primary-color);
+        margin: 20px;
+        border-radius: 20px;
+        display: flex;
+        box-shadow: 0px 0px 4px 5px rgba(0,0,0,0.2);
+    }
+
+    .col{
+        margin: 30px;
+    }
+
+    .col p{
+        color: var(--defaut-color);
+        font-size: 12px;
+        text-align: center;
+    }
+
+
+
+    h1 {
+       font-size: 24px;
+       font-weight: 700;
+       text-transform: uppercase;
+       text-align: center;
+       margin: 30px 0;
+       
+    }
+
+    li{
+        margin-top: 20px;
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    img{
+        width: 260px;
+        box-shadow: 0px 0px 4px 5px rgba(0,0,0,0.2);
+    }
+
+    .trailler{
+        padding: 10px 30px;
+        color: var(--defaut-color);
+        background-color: var(--second-color);
+        border-radius: 5px;
+        font-size: 10px;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-left: 30px;
+        box-shadow: 0px 0px 4px 5px rgba(0,0,0,0.2);
+    }
+
+    .head{
+        display: flex;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .head div:first-child{
+        margin-right: 30px;
+    }
+
+    .synopsis{
+        font-size: 14px;
     }
 }
