@@ -5,27 +5,29 @@
 * @param $checkedHour ($_POST['release'])
 * @return void
 */
-function addMovie($targetToSave) : void
+function addMovie($targetToSave)
 {
     global $db;
     $movies = [
             'title' => $_POST['title'],
-            'categories' => $_POST['categories'],
             'director' => $_POST['director'],
             'casting' => $_POST['casting'],
             'synopsis' => $_POST['synopsis'],
             'duration' => $_POST['duration'],
             'release_date' => $_POST['release_date'],
+            'trailer' => $_POST['trailer'],
             'poster' => $targetToSave,
             'slug' => renameFile($_POST['title'])
         ];
 
     try {
 
-        $sql = "INSERT INTO movies (title, categories, director, casting, synopsis, duration, release_date, poster, slug) VALUES (:title, :categories, :director, :casting, :synopsis, :duration, :release_date, :poster, :slug)";
+        $sql = "INSERT INTO movies (title, director, casting, synopsis, duration, release_date, poster, trailer, slug) VALUES (:title, :director, :casting, :synopsis, :duration, :release_date, :poster, :trailer, :slug)";
         $query = $db->prepare($sql);
         $query->execute($movies);
         alert('Le film a bien été ajouté.', 'success');
+        $lastInsertedId = $db->lastInsertId();
+        return $lastInsertedId;
 
     } catch (PDOException $e) {
 
@@ -81,13 +83,13 @@ function updateMovie($targetToSave)
     global $db;
     $data = [
         'title' => $_POST['title'],
-        'categories' => $_POST['categories'],
         'director' => $_POST['director'],
         'casting' => $_POST['casting'],
         'synopsis' => $_POST['synopsis'],
         'duration' => $_POST['duration'],
         'release_date' => $_POST['release_date'],
         'id' => $_GET['id'],
+        'trailer' => $_POST['trailer'],
         'slug' => renameFile($_POST['title'])
     ];
 
@@ -98,13 +100,13 @@ function updateMovie($targetToSave)
         $data['poster'] = $targetToSave;
         $sql = 'UPDATE movies SET 
             title = :title,
-            categories = :categories,
             director = :director,
             casting = :casting,
             synopsis = :synopsis,
             duration = :duration,
             release_date = :release_date,
             poster = :poster,
+            trailer = :trailer,
             slug = :slug 
             WHERE id = :id';
 
@@ -112,12 +114,12 @@ function updateMovie($targetToSave)
 
         $sql = 'UPDATE movies SET 
             title = :title,
-            categories = :categories,
             director = :director,
             casting = :casting,
             synopsis = :synopsis,
             duration = :duration,
             release_date = :release_date,
+            trailer = :trailer,
             slug = :slug 
             WHERE id = :id';
 
@@ -155,7 +157,7 @@ function getMovie(){
 
     try {
 
-        $query = "SELECT title, categories, director, casting, synopsis, duration, release_date, poster FROM movies where id = :id";
+        $query = "SELECT title, director, casting, synopsis, duration, release_date, poster, trailer FROM movies where id = :id";
         $statement = $db -> prepare($query);
         $statement -> bindParam('id', $movie_id);
         $statement -> execute ();
@@ -176,4 +178,98 @@ function getMovie(){
 
     }
     
+}
+
+/**
+ * Check if the url is from youtube
+ */
+function checkYoutubeUrl($url) {
+    $substring = "https://www.youtube.com/";
+    if (strpos($url, $substring) === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Get categories infos
+ */
+
+function getCategories(){
+    global $db;
+    $sql = 'SELECT * FROM categories';
+    $query = $db -> prepare($sql);
+    $query -> execute();
+    return (array) $query -> fetchAll();
+}
+
+/**
+* Create a movie_categorie
+* @return void;
+*/
+function createMoviesCat($lastId ,$currentCategorie){
+
+    global $db;
+    
+    $data = [
+        'movies_id' => $lastId,
+        'categories_id' => $currentCategorie
+    ];
+
+    try{
+
+        $sql = 'INSERT INTO movies_categories (movies_id, categories_id) VALUES (:movies_id, :categories_id)';
+        $query = $db -> prepare($sql);
+        $query -> execute($data);
+
+    } catch (PDOException $e) {
+
+        if ($_ENV['DEBUG'] == 'true'){
+
+            dump($e->getMessage());
+            die;
+
+        } else {
+
+            alert('Une erreur est survenue. Merci de réessayer plus tard','danger');
+
+        }
+
+    }
+}
+
+/**
+* Update movies_categories
+* @return void
+*/
+function updateMoviesCat($currentCategorie){
+
+    global $db;
+    
+    $data = [
+        'movies_id' => $_GET['id'],
+        'categories_id' => $currentCategorie
+    ];
+    
+    try {
+
+        $sql = 'UPDATE movies_categories SET movies_id = :movies_id, categories_id = :categories_id';
+        $query = $db -> prepare($sql);
+        $query -> execute($data);
+
+    } catch (PDOException $e) {
+
+        if ($_ENV['DEBUG'] == 'true'){
+
+            dump($e->getMessage());
+            die;
+
+        } else {
+
+            alert('Une erreur est survenue. Merci de réessayer plus tard','danger');
+
+        }
+
+    }
 }

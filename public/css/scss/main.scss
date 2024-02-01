@@ -41,6 +41,7 @@ main {
     a{
         text-decoration: none;
     }
+
     .contentWrapper {
         max-width: 1400px;
         width: 100%;
@@ -53,17 +54,21 @@ main {
 
     .bestRated{
         background-color: var(--primary-color);
-        width: 1250px;
+        max-width: 1200px;
+        width: 100%;
         border-radius: 20px;
+        padding: 20px;
         margin-top: 20px;
-        padding: 20px 0;
         margin-bottom: 50px;
+        margin-left: auto;
+        margin-right: auto;
         text-align: center;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
-        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
+        box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.5);
 
         img{
-            box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
+            max-width: 240px;
+            width: 100%;
         }
     }
 
@@ -78,29 +83,28 @@ main {
     }
 
     .bestRated .movieBox{
-        background-color: var(--second-color);
-        max-width: 1200px;
-        width: 100%;
-        border-radius: 20px;
-        margin-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 20px;
-        position: relative;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
+        justify-content: center;
+        max-width: 1200px;
+        width: 100%;
+        background-color: var(--second-color);
+        border-radius: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.5);
     }
 
     .bestRated article{
         margin: 20px;
-        max-width: 260px;
+        max-width: 240px;
         width: 100%;
         background-color: var(--primary-color);
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
+        box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.5);
     }
 
     .bestRated .leftArrow{
@@ -126,50 +130,10 @@ main {
         text-transform: uppercase;
         font-weight: 700;
         margin-bottom: 10px;
-        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
+        box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.5);
     }
 
-    .latestReleases{
-        background-color: var(--primary-color);
-        width: 600px;
-        border-radius: 20px;
-        margin-top: 20px;
-        padding: 20px 0;
-        margin-bottom: 50px;
-    }
-
-    .latestReleases h2{
-        color: var(--defaut-color);
-        font-size: 20px;
-        text-transform: uppercase;
-        font-weight: 700;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    .latestReleases .redBG{
-        background-color: var(--second-color);
-        width: 560px;
-        border-radius: 20px;
-        margin-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-    }
-
-    .latestReleases .moreBtn{
-        display: inline-block;
-        color:var(--defaut-color);
-        background-color: var(--primary-color);
-        text-decoration: none;
-        text-align: center;
-        padding: 20px 30px;
-        border-radius: 10px;
-        text-transform: uppercase;
-        font-weight: 700;
-        margin-bottom: 20px;
-        margin-top: 80px;
-    }
+    
 
 }
 
@@ -200,15 +164,17 @@ main {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
 
     .wrapper{
-        background-color: var(--primary-color);
-        margin: 20px;
-        border-radius: 20px;
         display: flex;
+        background-color: var(--primary-color);
+        margin: 10px;
+        border-radius: 20px;
         box-shadow: 0px 0px 4px 5px rgba(0,0,0,0.2);
     }
 
     .col{
         margin: 30px;
+        max-width: 350px;
+        width: 100%;
     }
 
     .col p{
@@ -235,8 +201,18 @@ main {
     }
 
     img{
-        width: 260px;
-        box-shadow: 0px 0px 4px 5px rgba(0,0,0,0.2);
+        max-width: 800px;
+        width: 100%;
+        box-shadow: inset 0px 12px 4px -8px rgba(0,0,0,0.4);
+    }
+
+    .duration-trailler{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .duration-trailler div:first-child{
+        margin-right: 20px;
     }
 
     .trailler{
@@ -248,7 +224,6 @@ main {
         text-decoration: none;
         font-weight: 700;
         text-transform: uppercase;
-        margin-left: 30px;
         box-shadow: 0px 0px 4px 5px rgba(0,0,0,0.2);
     }
 
@@ -264,5 +239,76 @@ main {
 
     .synopsis{
         font-size: 14px;
+    }
+}
+
+@media (max-width: 1400px){
+    
+    main .bestRated{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+}
+
+@media (max-width: 1280px){
+
+    main .bestRated{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+       
+}
+
+@media (max-width: 960px){
+    .content-bg{
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    .duration-trailler{
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .duration-trailler div:first-child{
+        margin-bottom: 20px;
+    }
+}
+
+
+@media (max-width: 720px){
+
+    .wrapper{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main .bestRated{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .head{
+        flex-direction: column;
+        margin: 0;
+    }
+ 
+    .head div:first-child{
+        margin-bottom: 30px;
+    }
+
+    .head div:last-child{
+        margin-right: 20px;
+    }
+
+    .duration-trailler div:last-child{
+        white-space: nowrap;
+        margin-left: 0px;
+    }
+
+    .wrapper .col{
+        padding: 20px;
     }
 }

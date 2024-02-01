@@ -14,11 +14,14 @@
                 <ul>
                     <li class="head">
                         <div>Sortie : {{ movie.date|date('d/m/Y') }}</div>
-                        <div>Genres : {{ movie.categories }}</div>
+                        <div>Genres : ...</div>
                     </li>
                     <li>Casting : {{ movie.casting }}</li>
                     <li>Réalisateur : {{ movie.director }}</li>
-                    <li>Durée : {{ movie.duration|date('i:s')}} <a href="" class="trailler">Voir bande annonce</a></li>
+                    <li class="duration-trailler">
+                        <div>Durée : {{ movie.duration|date('i:s')}}</div>
+                        <div class="button"><a href="{{ movie.trailer }}" target="_blank" class="trailler">Voir bande annonce</a></div>
+                    </li>
 
                     <li class="synopsis">{{ movie.synopsis }}</li>
                 </ul>

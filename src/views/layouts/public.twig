@@ -16,7 +16,7 @@
     <header>
         <div class="wrapper">
             <div>
-                <a href="<?= $router -> generate('home') ?>" class="logo">
+                <a href="{{ getUrl('home') }}" class="logo">
                     <h1>Great Movies</h1>
                 </a>
             </div>
@@ -27,6 +27,7 @@
                 </form>
             </div>
         </div>
+        <div class="nav-bar"></div>
     </header>
     {% block content %}{% endblock %}
     <footer>

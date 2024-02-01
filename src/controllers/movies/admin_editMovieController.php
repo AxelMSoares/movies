@@ -55,6 +55,13 @@ $moviesMessage = [
 
     ],
 
+    'trailer' => [
+        'message' => false,
+        'class' => false,
+        'status' => false
+
+    ],
+
     'global' => [
         'message' => false
     ]
@@ -124,43 +131,59 @@ if(!empty($_POST)){
         }
     }   
 
-        // If Success in all the verifications, the movie is add in the database.
-        if ($moviesMessage['release_date']['status'] !== true &&
-            $moviesMessage['title']['status'] !== true &&
-            $moviesMessage['synopsis']['status'] !== true &&
-            $moviesMessage['duration']['status'] !== true)
-        {
+    if (!empty($_POST['trailer'])){
+        if(!checkYoutubeUrl($_POST['trailer'])){
+            $moviesMessage['trailer']['status'] = true;
+            alert('Le format de l\'url est invalide. Il doit commencer par: https://youtube.com/');
+        }
+    }
 
-            if(!empty($_GET['id'])) {
+    // If Success in all the verifications, the movie is add in the database.
+    if ($moviesMessage['release_date']['status'] !== true &&
+        $moviesMessage['title']['status'] !== true &&
+        $moviesMessage['synopsis']['status'] !== true &&
+        $moviesMessage['trailer']['status'] !== true &&
+        $moviesMessage['duration']['status'] !== true)
+    {
 
-                if (!empty($_FILES['poster']['name'])){
-                    $targetToSave = uploadFile($path, 'poster');
-                    imageResize($targetToSave, $imageWidth);
-                }
-                
-                // if (!file_exists($targetToSave)) {
+        if(!empty($_GET['id'])) {
 
-                    updateMovie($targetToSave);
-                    alert('Le film a été mis a jour avec success.', 'success');
-                    header('location: ' . $router->generate('displayMovie'));
-                    die;
-
-                // } else {
-
-                //     alert ('Une affiche avec ce nom existe déjà, merci de la renommer');
-
-                // }
-
-            } else {
+            if (!empty($_FILES['poster']['name'])){
 
                 $targetToSave = uploadFile($path, 'poster');
-                addMovie($targetToSave);
-                imageResize($targetToSave, $imageWidth);
-                alert('Le film a été ajouté avec success.', 'success');
+                // imageResize($targetToSave, $imageWidth);
+
+            }
+            
+            
+            updateMovie($targetToSave);
+            
+
+            foreach ($_POST['categories'] as $cat) {
+
+                // createMoviesCat($cat);
+                // updateMoviesCat($cat);
 
             }
 
+            alert('Le film a été mis a jour avec success.', 'success');
+            header('location: ' . $router->generate('displayMovie'));
+            die;
+        
+        } else {
+
+            $targetToSave = uploadFile($path, 'poster');
+            $lastId = addMovie($targetToSave);
+            // imageResize($targetToSave, $imageWidth);
+
+            foreach ($_POST['categories'] as $cat) {
+                createMoviesCat($lastId, $cat);
+            }
+
+            alert('Le film a été ajouté avec success.', 'success');
         }
+
+    }
 
 } else if(!empty($_GET['id'])) {
 

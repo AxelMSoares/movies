@@ -1,6 +1,7 @@
 <?php  
 
 get_header('Créer un film', 'admin') ; 
+$categories = getCategories();
 
 ?>
 
@@ -26,9 +27,17 @@ get_header('Créer un film', 'admin') ;
             <?= $error['message']; ?>
             
         </div>
+        <fieldset>
+            <?php foreach ($categories as $categorie) { ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input mb-2" type="checkbox" id="categories" name="categories[]" value="<?= $categorie->id ?>">
+                    <label class="form-check-label" for="categories"><?= $categorie->name ?></label>
+                </div>
+            <?php } ?>
+        </fieldset>
         <div class="mb-3">
-            <label for="categories" class="form-label">Categories:</label>
-            <input type="text" class="form-control" id="categories" name="categories" value="<?= getValue('categories') ?>">
+            <label for="trailer" class="form-label">Bande annonce:</label>
+            <input type="text" class="form-control" id="trailer" name="trailer" value="<?= getValue('trailer') ?>" placeholder="https://youtube.com/...">
         </div>
         <div class="mb-3">
             <?php $error = checkEmptyFields('release_date'); ?>

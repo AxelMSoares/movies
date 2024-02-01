@@ -44,9 +44,9 @@ footer {
         text-align: center;
         padding: 10px 0;
         background-color: var(--second-color);
-        max-width: 1900px;
         width: 100%;
         margin-top: 20px;
+        box-shadow: inset 0px 12px 4px -8px rgba(0,0,0,0.4);
     }
 
     .social{
@@ -54,3 +54,42 @@ footer {
         flex-wrap: wrap;
     }
 }   
+
+@media (max-width : 1200px){
+    footer{
+
+        ul:first-child{
+            margin-left: 100px;
+        }
+
+        ul:last-child{
+            margin-right: 100px;
+        }
+    }
+
+}
+
+@media (max-width : 720px){
+    footer{
+        ul:first-child{
+            margin-left: 20px;
+        }
+
+        ul:last-child{
+            margin-right: 20px;
+        }
+    }
+}
+
+@media (max-width : 520px){
+    footer{
+        ul{
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-left: 20px;
+        }
+    }
+}

@@ -15,7 +15,6 @@ get_header('Films', 'admin') ;
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Réalisateur: <?= htmlentities($movie['director']) ?></li>
-        <li class="list-group-item">Categorie: <?= htmlentities($movie['categories']) ?></li>
         <li class="list-group-item">Durée: <?= htmlentities($movie['duration']) ?> min</li>
         <li class="list-group-item">Date de sortie: <?= htmlentities($movie['release_date']) ?></li>
         <li class="list-group-item">Casting: <?= htmlentities($movie['casting']) ?></li>
