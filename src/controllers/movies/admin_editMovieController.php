@@ -155,14 +155,11 @@ if(!empty($_POST)){
 
             }
             
-            
-            updateMovie($targetToSave);
-            
+            deleteMoviesCat();
 
-            foreach ($_POST['categories'] as $cat) {
+            foreach ($_POST['categories'] as $cat){
 
-                // createMoviesCat($cat);
-                // updateMoviesCat($cat);
+                createMoviesCat($_GET['id'], $cat);
 
             }
 

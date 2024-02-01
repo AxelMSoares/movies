@@ -198,7 +198,7 @@ function checkYoutubeUrl($url) {
 
 function getCategories(){
     global $db;
-    $sql = 'SELECT * FROM categories';
+    $sql = 'SELECT * FROM categories ORDER by name';
     $query = $db -> prepare($sql);
     $query -> execute();
     return (array) $query -> fetchAll();
@@ -240,21 +240,20 @@ function createMoviesCat($lastId ,$currentCategorie){
 }
 
 /**
-* Update movies_categories
+* Delete from movies_categories
 * @return void
 */
-function updateMoviesCat($currentCategorie){
+function deleteMoviesCat(){
 
     global $db;
     
     $data = [
-        'movies_id' => $_GET['id'],
-        'categories_id' => $currentCategorie
+        'movies_id' => $_GET['id']
     ];
     
     try {
 
-        $sql = 'UPDATE movies_categories SET movies_id = :movies_id, categories_id = :categories_id';
+        $sql = 'DELETE from movies_categories WHERE movies_id = :movies_id';
         $query = $db -> prepare($sql);
         $query -> execute($data);
 
@@ -272,4 +271,17 @@ function updateMoviesCat($currentCategorie){
         }
 
     }
+}
+
+function getCategoriesByMovie(){
+
+    $movieId = $_GET['id'];
+    global $db;
+
+    $sql = 'SELECT id, movies_id FROM movies_categories WHERE movies_id = :movies_id';
+    $query = $db -> prepare($sql);
+    $query -> bindParam('movies_id', $movieId);
+    $query -> execute ();
+    return $query -> fetchAll(PDO::FETCH_ASSOC);
+
 }

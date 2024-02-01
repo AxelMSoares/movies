@@ -18,6 +18,7 @@ $router->map( 'GET', $admin . '/films', 'movies/admin_displayMovie', 'displayMov
 $router->map( 'GET|POST', $admin . '/films/editer', 'movies/admin_editMovie', 'editMovie');
 $router->map( 'GET|POST', $admin . '/films/editer/[i:id]', 'movies/admin_editMovie', '');
 $router->map( 'GET', $admin . '/films/supprimer/[i:id]', 'movies/admin_deleteMovie', 'deleteMovie');
+$router->map( 'GET', $admin . '/films/supprimer-confirm/[i:id]', 'movies/admin_deleteConf', 'deleteMovieConfirm');
 
 // Categories
 $router->map( 'GET|POST', $admin . '/categories', 'categories/admin_displayCategories', 'categories');

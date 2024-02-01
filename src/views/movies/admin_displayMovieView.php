@@ -21,7 +21,7 @@ get_header('Films', 'admin') ;
         <li class="list-group-item">Description: Modifier pour voir</li>
       </ul>
       <div class="card-body">
-        <a href="<?= $router->generate('deleteMovie'); ?><?= $movie['id'] ?>" class="card-link btn btn-danger">Supprimer</a>
+        <a href="<?= $router->generate('deleteMovieConfirm'); ?><?= $movie['id'] ?>" class="card-link btn btn-danger">Supprimer</a>
         <a href="<?= $router->generate('editMovie'); ?>/<?= $movie['id'] ?>" class="card-link btn btn-primary">Modifier</a>
       </div>
     </div>
