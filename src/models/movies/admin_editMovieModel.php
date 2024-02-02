@@ -205,9 +205,9 @@ function getCategories(){
 }
 
 /**
-* Create a movie_categorie
-* @return void;
-*/
+ * Create categories for a movie
+ * @return void;
+ */
 function createMoviesCat($lastId ,$currentCategorie){
 
     global $db;
@@ -240,9 +240,9 @@ function createMoviesCat($lastId ,$currentCategorie){
 }
 
 /**
-* Delete from movies_categories
-* @return void
-*/
+ * Delete the categories of a movie
+ * @return void
+ */
 function deleteMoviesCat(){
 
     global $db;
@@ -273,15 +273,32 @@ function deleteMoviesCat(){
     }
 }
 
-function getCategoriesByMovie(){
+/**
+ * Get the categories of a movie
+ */
+function getMovieCategories(){
 
-    $movieId = $_GET['id'];
     global $db;
+    $data = [
+        'movies_id' => $_GET['id']
+    ];
 
-    $sql = 'SELECT id, movies_id FROM movies_categories WHERE movies_id = :movies_id';
+
+    $sql = 'SELECT categories_id FROM movies_categories WHERE movies_id = :movies_id';
     $query = $db -> prepare($sql);
-    $query -> bindParam('movies_id', $movieId);
-    $query -> execute ();
+    $query -> execute($data);
     return $query -> fetchAll(PDO::FETCH_ASSOC);
 
+  
 }
+
+function checkMatchMovieCat(int $catToCheck, array $movieCategories){
+
+    foreach($movieCategories as $cat){
+
+        $result[] = $cat['categories_id'];
+        
+    }
+
+    return (in_array($catToCheck, $result)) ? 'checked' : '';
+};

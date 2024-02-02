@@ -14,7 +14,7 @@
                 <ul>
                     <li class="head">
                         <div>Sortie : {{ movie.date|date('d/m/Y') }}</div>
-                        <div>Genres : ...</div>
+                        <div>Genres : {{ movie.categories_names|replace({',': ', '}) }}</div>
                     </li>
                     <li>Casting : {{ movie.casting }}</li>
                     <li>Réalisateur : {{ movie.director }}</li>

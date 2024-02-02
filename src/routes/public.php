@@ -1,11 +1,5 @@
 <?php
 
-// // Users
-// $router->map( 'GET','/connexion', 'login.php', 'login');
-// $router->map( 'GET','/inscription', 'signup.php');
-// $router->map( 'GET','/deconnexion', 'logout.php');
-// $router->map( 'GET','/profil', 'profile.php');
-// $router->map( 'GET','/mot-de-passe-oublie', 'forgottenPassword.php');
 
 $router->addMatchTypes(['slug' => '[a-z0-9]+(?:-[a-z0-9]+)*']);
 

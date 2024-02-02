@@ -3,6 +3,9 @@
 $targetToSave = '';
 $path = 'images/posters';
 $imageWidth = 200;
+$categoriesList = getCategories();
+$movieCategories = getMovieCategories();
+
 
 $moviesMessage = [
 
@@ -185,6 +188,5 @@ if(!empty($_POST)){
 } else if(!empty($_GET['id'])) {
 
     $_POST = (array) getMovie();
-
 } 
 

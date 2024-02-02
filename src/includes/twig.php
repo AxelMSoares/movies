@@ -8,3 +8,10 @@ $twig -> addFunction(new Twig\TwigFunction('getUrl', function (string $name, arr
 
 }));
 
+
+$twig -> addFunction (new Twig\TwigFunction('search', function (string $name, string $search) {
+    
+    $pos = strpos(strtolower($name), strtolower($search));
+	return ($pos === false) ? false : true;
+
+}));

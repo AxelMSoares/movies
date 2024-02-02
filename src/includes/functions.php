@@ -300,3 +300,11 @@ function imageResize(string $imageName, int $width) : void
 	$image->save($imageName);
 
 }
+
+/**
+ * Search by the name / title
+ */
+function searchByName ($name, $search) {
+	$pos = strpos(strtolower($name), strtolower($search));
+	return ($pos === false) ? false : true;
+}

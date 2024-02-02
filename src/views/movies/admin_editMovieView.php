@@ -1,7 +1,7 @@
 <?php  
 
 get_header('Créer un film', 'admin') ; 
-$categories = getCategories();
+
 
 ?>
 
@@ -28,9 +28,9 @@ $categories = getCategories();
             
         </div>
         <fieldset>
-            <?php foreach ($categories as $categorie) { ?>
+            <?php foreach ($categoriesList as $categorie) { ?>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input mb-2" type="checkbox" id="categories" name="categories[]" value="<?= $categorie->id ?>">
+                    <input class="form-check-input mb-2" type="checkbox" id="categories" name="categories[]" value="<?= $categorie->id ?>" <?= checkMatchMovieCat($categorie->id, $movieCategories)?> >
                     <label class="form-check-label" for="categories"><?= $categorie->name ?></label>
                 </div>
             <?php } ?>
