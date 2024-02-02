@@ -1,6 +1,9 @@
 <?php 
 
-// Access to catégories infos
+/**
+ * Get the id and name from categories in alphabetical order
+ * @return array
+ */
 function getCategories()
 {
 

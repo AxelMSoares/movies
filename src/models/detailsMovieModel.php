@@ -1,5 +1,9 @@
 <?php 
 
+/**
+ * Get all the infos about a movie by his slug. Joined other tables
+ * @return array
+ */
 function detailsMovie(){
 
     global $db;

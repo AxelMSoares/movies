@@ -10,7 +10,8 @@ use Intervention\Image\Drivers\Gd\Driver;
 * @return void
 */
 
-function get_header($title, $layout ='public') :void {
+function get_header($title, $layout ='public') :void 
+{
     global $router;
     require '../src/views/layouts/' . $layout . '/header.php';
 } 
@@ -21,7 +22,8 @@ function get_header($title, $layout ='public') :void {
 * @return void 
 */
 
-function get_footer($layout = 'public') :void{
+function get_footer($layout = 'public') : void
+{
     require '../src/views/layouts/' . $layout . '/footer.php';
 }
 
@@ -44,7 +46,8 @@ function alert(string $message, string $type = 'danger'): void
 * Display the alert message and destroy the session after display the alert
 * @return void
 */
-function displayAlert(): void{
+function displayAlert(): void
+{
 
     if (!empty($_SESSION['alert'])){
 
@@ -96,7 +99,7 @@ function checkAdmin(array $match, AltoRouter $router){
 *  
 */
 
-function checkAlreadyExistEmail(): mixed
+function checkAlreadyExistEmail()
 {
     global $db;
     if (!empty($_GET['id'])) {
@@ -118,6 +121,9 @@ function checkAlreadyExistEmail(): mixed
 
 };
 
+/**
+ * Erase the user session after one hour and redirect to login page
+ */
 function logoutTimer ()
 {
     global $router;
@@ -141,34 +147,35 @@ function logoutTimer ()
 
 
 /**
-*   Clean a text for insert into the database
+ * Clean a text for insert into the database
+ * @param string $text to clean
+ * @return string $text cleanned
  */
 function cleanText(string $text){
 
-    // Suppression des espaces vides en debut et fin de chaque ligne
+    // Erase espaces in the front and after a string
 	$text = preg_replace("#^[\t\f\v ]+|[\t\f\v ]+$#m",'',$text);
 
-    // Remplacement des caractères accentués par leurs équivalents non accentués
+    // Replace accent characters by characters without accents
 	$text = htmlentities($text, ENT_NOQUOTES, 'utf-8');
 	$text = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $text);
 	$text = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $text); // pour les ligatures e.g. 'œ'
 	$text = html_entity_decode($text); 
 	
 
-    // Transforme tout le texte en minuscule
+    // Transform in a lowercase
     $text = mb_strtolower($text, 'UTF-8');
 
-    // Remplace les tabulations par des espaces
+    // Replace tabs by espaces
 	$text = preg_replace("#\h#u", " ", $text);
 
-
-    // Remplace les espaces multiples par des espaces simples
+    // Replace the double spaces by a single space
 	$text = preg_replace('#[" "]{2,}#',' ',$text);
 
-	// Remplace 1 entrée (\r\n) par 1 espace
+	// Replace 1 entry (\r\n) by a espace
 	$text = str_replace(array("\r","\n"),' ',$text);
 
-	// Supprime toutes les balises html
+	// Erase all html tags
 	$text = strip_tags($text);
 
 
@@ -177,7 +184,7 @@ function cleanText(string $text){
 }
 
 /**
-* Get the ip adresse of the client
+ * Get the ip adresse of the client
  */
 function get_ip() {
     	// IP si internet partagé
@@ -201,7 +208,11 @@ function get_ip() {
 
 }
 
-// Remove accent for all characters
+/**  
+ * Remove accent for all characters
+ * @param string $string to remove accents
+ * @return string $string without accents 
+ */
 function removeAccent($string) {
 	$string = str_replace(
 		['à','á','â','ã','ä', 'ç', 'è','é','ê','ë', 'ì','í','î','ï', 'ñ', 'ò','ó','ô','õ','ö', 'ù','ú','û','ü', 'ý','ÿ', 'À','Á','Â','Ã','Ä', 'Ç', 'È','É','Ê','Ë', 'Ì','Í','Î','Ï', 'Ñ', 'Ò','Ó','Ô','Õ','Ö', 'Ù','Ú','Û','Ü', 'Ý'], 
@@ -211,7 +222,11 @@ function removeAccent($string) {
 	return $string;
 }
 
-// Clean a name for stock in the database
+/**
+ * Clean a name for stock in the database
+ *@param string $name name to clean
+ *@return string $name cleaned name
+ */
 function renameFile(string $name) {
 	$name = trim($name);
 	$name = strip_tags($name);
@@ -225,7 +240,9 @@ function renameFile(string $name) {
 	return $name;
 }
 
-// Convert a size
+/**
+ * Convert a size in ko, mo, go, to
+ */
 function formatBytes($size, $precision = 2) {
 	$base     = log($size, 1024);
 	$suffixes = ['', 'Ko', 'Mo', 'Go', 'To'];
@@ -234,8 +251,7 @@ function formatBytes($size, $precision = 2) {
 }
 
 /**	
- * Upload file
- * 
+ * Upload a file after checks
  * @param string $path to save file
  * @param string $field name of input type file
  */
@@ -291,7 +307,7 @@ function uploadFile(string $path, string $field, array $exts = ['jpg', 'png', 'j
 * @param int $width width
 * @return void
  */
-function imageResize(string $imageName, int $width) : void
+function imageResize(string $imageName, int $width)
 {
 
 	$manager = new ImageManager(new Driver());
@@ -304,7 +320,8 @@ function imageResize(string $imageName, int $width) : void
 /**
  * Search by the name / title
  */
-function searchByName ($name, $search) {
+function searchByName ($name, $search) 
+{
 	$pos = strpos(strtolower($name), strtolower($search));
 	return ($pos === false) ? false : true;
 }

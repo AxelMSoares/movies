@@ -1,7 +1,8 @@
 <?php
 
 /**
-* Get all movies order by added date
+ * Get all movies order by added date
+ * @return array
  */
 function getMovies()
 {

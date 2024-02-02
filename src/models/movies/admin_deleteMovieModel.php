@@ -1,5 +1,10 @@
 <?php 
 
+/**
+ * Delete a movie by its ID and redirect to movie display page
+ * @param $_GET['id'] movie ID
+ * @return void  alert with message
+ */
 function deleteMovie(){
     global $db;
     global $router;
@@ -17,6 +22,10 @@ function deleteMovie(){
 
 };
 
+/**
+ * Delete categories of a movie by the movie ID
+ * @param int $_GET['id'] movie id 
+ */
 function deleteMovieCat(){
 
     $movie_id = $_GET['id'];

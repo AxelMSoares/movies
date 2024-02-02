@@ -1,8 +1,9 @@
 <?php
 
 /**
-* Delete a user by a id
-*/
+ * Delete a user by its ID
+ * @param int $_GET['id']
+ */
 function deleteUserById(){
     global $router;
     global $db;
@@ -33,8 +34,9 @@ function deleteUserById(){
 }
 
 /**
-*   Check if the id exist in the db
-*/
+ * Check if the id exist in the db
+ * @param $_GET['id']
+ */
 function getAlreadyExistId ()
 {
     try {
@@ -61,8 +63,8 @@ function getAlreadyExistId ()
 }
 
 /**
-*   Count the number of users
-*/
+ * Count the number of users
+ */
 function countUsers()
 {
     global $db;

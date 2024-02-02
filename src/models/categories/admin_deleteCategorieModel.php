@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Delete a categorie by its ID
+ * @param int $_GET['id'] 
+ */
 function deleteCategorie(){
 
     global $db;

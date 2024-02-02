@@ -1,5 +1,6 @@
 <?php
 
+
 $twig -> addFunction(new Twig\TwigFunction('getUrl', function (string $name, array $params = []) {
     
     global $router;
@@ -7,7 +8,6 @@ $twig -> addFunction(new Twig\TwigFunction('getUrl', function (string $name, arr
     return $router -> generate($name, $params);
 
 }));
-
 
 $twig -> addFunction (new Twig\TwigFunction('search', function (string $name, string $search) {
     

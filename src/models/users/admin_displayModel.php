@@ -1,8 +1,8 @@
 <?php
 
 /**
-* Get all users
-*/
+ * Get all users infos
+ */
 function getUsers () {
 
     global $db;

@@ -3,6 +3,7 @@
 
 /**
  * Create a new categorie
+ * @param $_POST['name'] the name of the categorie
  * @return void
  */
 function createCategorie() : void
@@ -41,7 +42,9 @@ function createCategorie() : void
 }
 
 /**
- * Update a categorie
+ * Update a categorie by its ID
+ * @param string $_POST['name'] the name to update
+ * @param int $_GET['id'] the id of the categorie to update
  * @return void
  */
 function updateCategorie() : void
@@ -76,7 +79,7 @@ function updateCategorie() : void
 }
 
 /**
- * Get categories by ID
+ * Get categories names by its ID
  * @param $_GET['id']
  * @return mixed
  */
@@ -116,7 +119,9 @@ function getCategories() :mixed
 
 }
 
-
+/**
+ * Check if a categorie with this name exists
+ */
 function checkAlreadyExistCategorie(): mixed
 {
 

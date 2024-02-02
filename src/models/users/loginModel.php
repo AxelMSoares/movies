@@ -1,6 +1,9 @@
 <?php
 
-function checkUserAccess()
+/**
+ * Check the user access by his email and his pwd
+ */
+function checkUserAccess() : mixed
 {
 
     global $db;
@@ -23,6 +26,11 @@ function checkUserAccess()
 
 }
 
+/**
+ * Save in the database the last time a user has loggin
+ * @param string $userId
+ * @return void
+ */
 function saveLastLogin(string $userId) : void
 {
 
@@ -33,9 +41,13 @@ function saveLastLogin(string $userId) : void
 
 }
 
-// Login function, start the user session and save his last connection
+/**
+ * Login function, start the user session and save his last connection and redirect to display movie page
+ * @param int $accessUser the user id
+ * @param mixed the router
+ * @return mixed Return a alert
+ */
 function successfulLogin($accessUser, $router) {
-    
 
     // Démarrer la session utilisateur et enregistrer l'heure de la connexion
     $_SESSION['user'] = [
@@ -56,18 +68,21 @@ function successfulLogin($accessUser, $router) {
     die;
 }
 
-// Login failed function, start a count of the login attempts and save the time of the last login attempt
+/**
+* Login failed function, start a count of the login attempts and save the time of the last login attempt
+*/
+
 function failedLogin() {
 
-    // Vérifier si la clé 'login_attempts' existe dans la session
+    // Verify if the login_attemps key exist in the function
     if (!isset($_SESSION['login_attempts'])) {
 
-        $_SESSION['login_attempts'] = 0; // Si elle n'existe pas, initialiser à 1
+        $_SESSION['login_attempts'] = 0; // If the key dont exist, make one started at zero
 
     } else {
 
-        $_SESSION['login_attempts']++; // Si elle existe, incrémenter
-        $_SESSION['lastLogin_attempts'] = time(); // Enregistrer l'heure de la dernière tentative de connexion (HH:MM:SS)
+        $_SESSION['login_attempts']++; // If the counter exist, increment
+        $_SESSION['lastLogin_attempts'] = time(); // Save the last loggin attempt (HH:MM:SS)
 
     }
 

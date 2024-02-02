@@ -44,7 +44,7 @@ function addUser ()
 
 /**
 * Check if the nickname already exists in the database
-*  
+* @param string @_POST['nickname']
 */
 
 function checkAlreadyExistNickname(): mixed
@@ -73,7 +73,11 @@ function checkAlreadyExistNickname(): mixed
 
 
 /**
-* Update a user where id = :id
+* Update a user infos by its ID
+* @param string $_POST['nickname']
+* @param string $_POST['email']
+* @param string hashed $_POST['pwd']
+* @param int $_GET['id'] 
 */
 function updateUser()
 {
@@ -110,8 +114,9 @@ function updateUser()
 };
 
 /**
-* Get users info by id
-*/
+ * Get users info by id
+ * @param $_GET['id']
+ */
 function getUsersInfosById(){
     
     global $db;

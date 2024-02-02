@@ -24,10 +24,10 @@ function checkEmptyFields ($field, $message = 'Veuillez renseigner cette informa
 }
 
 /**
-* Return value of field
+ * Return value of a field
  */
 
- function getValue (string $field): string
+ function getValue (string $field)
 {
     if (isset($_POST[$field])) {
         return $_POST[$field];

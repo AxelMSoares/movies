@@ -2,10 +2,10 @@
 
 /**
 * Add a movie in the database
-* @param $checkedHour ($_POST['release'])
-* @return void
+* @param string $targetToSave poster direction
+* @return mixed last inserted id
 */
-function addMovie($targetToSave)
+function addMovie(string $targetToSave)
 {
     global $db;
     $movies = [
@@ -47,7 +47,7 @@ function addMovie($targetToSave)
 
 /**
 * Check if the email already exists in the database
-*  
+*  @return mixed false or int
 */
 
 function checkAlreadyExistMovie(): mixed
@@ -65,6 +65,7 @@ function checkAlreadyExistMovie(): mixed
 
     }
 
+    try {
     $sql = 'SELECT id FROM movies WHERE title = :title';
     $query = $db->prepare($sql);
     $query->bindParam(':title', $_POST['title'], PDO::PARAM_STR);
@@ -72,12 +73,27 @@ function checkAlreadyExistMovie(): mixed
 
     return $query -> fetch();
 
+    } catch (PDOException $e) {
+
+        if ($_ENV['DEBUG'] == 'true'){
+
+            dump($e->getMessage());
+            die;
+
+        } else {
+
+            alert('Une erreur est survenue. Merci de réessayer plus tard','danger');
+
+        }
+
+    }
 };
 
 /**
-* Fonction for update a movie
-*/
-function updateMovie($targetToSave)
+ * Fonction for update a movie, if a poster are send, update the poster. If no one are send, dont update the poster.
+ * @param string $targetToSave poster directory 
+ */
+function updateMovie(string $targetToSave)
 {
 
     global $db;
@@ -147,9 +163,11 @@ function updateMovie($targetToSave)
 };
 
 /**
-* Get infos about the movies
+ * Get informations about a movies by its ID
+ * @return mixed array 
  */
-function getMovie(){
+function getMovie()
+{
 
     global $db;
 
@@ -182,8 +200,11 @@ function getMovie(){
 
 /**
  * Check if the url is from youtube
+ * @param string $url the entered url
+ * @return boolean
  */
-function checkYoutubeUrl($url) {
+function checkYoutubeUrl(string $url) : bool
+{
     $substring = "https://www.youtube.com/";
     if (strpos($url, $substring) === 0) {
         return true;
@@ -193,10 +214,12 @@ function checkYoutubeUrl($url) {
 }
 
 /**
- * Get categories infos
+ * Get all the informations about the categories (id, name)
+ * @return array
  */
 
-function getCategories(){
+function getCategories()
+{
     global $db;
     $sql = 'SELECT * FROM categories ORDER by name';
     $query = $db -> prepare($sql);
@@ -206,7 +229,9 @@ function getCategories(){
 
 /**
  * Create categories for a movie
- * @return void;
+ * @param int $lastId or $GET['id'] The movie id. Last inserted id gived by the addMovie function
+ * @param int $currentCategorie the id of the categorie we want to insert
+ * @return mixed void or error;
  */
 function createMoviesCat($lastId ,$currentCategorie){
 
@@ -240,7 +265,8 @@ function createMoviesCat($lastId ,$currentCategorie){
 }
 
 /**
- * Delete the categories of a movie
+ * Delete the categories of a movie by its ID
+ * @param int $_GET['id'] movie id
  * @return void
  */
 function deleteMoviesCat(){
@@ -274,7 +300,9 @@ function deleteMoviesCat(){
 }
 
 /**
- * Get the categories of a movie
+ * Get the categories of a movie by its ID
+ *@param $_GET['id']
+ *@return array
  */
 function getMovieCategories(){
 
@@ -283,17 +311,40 @@ function getMovieCategories(){
         'movies_id' => $_GET['id']
     ];
 
+    try{
+        $sql = 'SELECT categories_id FROM movies_categories WHERE movies_id = :movies_id';
+        $query = $db -> prepare($sql);
+        $query -> execute($data);
+        return $query -> fetchAll(PDO::FETCH_ASSOC);
 
-    $sql = 'SELECT categories_id FROM movies_categories WHERE movies_id = :movies_id';
-    $query = $db -> prepare($sql);
-    $query -> execute($data);
-    return $query -> fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+
+        if ($_ENV['DEBUG'] == 'true'){
+
+            dump($e->getMessage());
+            die;
+
+        } else {
+
+            alert('Une erreur est survenue. Merci de réessayer plus tard','danger');
+
+        }
+
+    }
 
   
 }
 
-function checkMatchMovieCat(int $catToCheck, array $movieCategories){
+/**
+ * Check if the categorie to check exist in categories table. 
+ *@param int $catToCheck the id of the movie_categorie to check
+ *@param array $movieCategories the array of all categories
+ *@return string 'checked' if exist or '' if not
+ */
+function checkMatchMovieCat(int $catToCheck, array $movieCategories) : string
+{
 
+    $result = [];
     foreach($movieCategories as $cat){
 
         $result[] = $cat['categories_id'];
