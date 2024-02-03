@@ -63,7 +63,7 @@ main {
         margin-left: auto;
         margin-right: auto;
         text-align: center;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.5);
 
         img{
@@ -130,7 +130,7 @@ main {
         text-transform: uppercase;
         font-weight: 700;
         margin-bottom: 10px;
-        box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.5);
     }
 
     
@@ -152,7 +152,7 @@ main {
 #details-movie{
     max-width: 800px;
     width: 100%;
-    padding: 5px 20px;
+    padding: 5px 10px;
     margin-left: auto;
     margin-right: auto;
     background-color: var(--second-color);
@@ -161,7 +161,7 @@ main {
     font-family: 'Noto Sans', sans-serif;
     line-height: 1.45em;
     box-shadow: 0px 0px 4px 5px rgba(0,0,0,0.2);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+    text-shadow: 0px 0px 4px rgba(0,0,0,1);
 
     .wrapper{
         display: flex;
@@ -224,7 +224,7 @@ main {
         text-decoration: none;
         font-weight: 700;
         text-transform: uppercase;
-        box-shadow: 0px 0px 4px 5px rgba(0,0,0,0.2);
+        box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.5);
     }
 
     .head{
@@ -261,6 +261,7 @@ main {
 }
 
 @media (max-width: 960px){
+
     .content-bg{
         margin-right: 20px;
         margin-left: 20px;
@@ -311,4 +312,23 @@ main {
     .wrapper .col{
         padding: 20px;
     }
+}
+
+@media (max-width: 400px){
+
+    #details-movie{
+        padding: 2px;
+
+    }
+    
+    #details-movie .trailler{
+        padding: 8px 10px;
+    }
+
+    .content-bg{
+        margin-right: 8px;
+        margin-left: 8px;
+        padding: 8px;
+    }
+
 }
