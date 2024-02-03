@@ -19,8 +19,9 @@
                     <li>Casting : {{ movie.casting }}</li>
                     <li>Réalisateur : {{ movie.director }}</li>
                     <li class="duration-trailler">
-                        <div>Durée : {{ movie.duration|date('i:s')}}</div>
-                        <div class="button"><a href="{{ movie.trailer }}" target="_blank" class="trailler">Voir bande annonce</a></div>
+                        <div>Durée : {{ movie.duration|date('i:s')|replace({':': ' h '})}}</div>
+                        <div class="button"><a href="{{ movie.trailer }}" target="_blank" class="trailler">Voir bande
+                                annonce</a></div>
                     </li>
 
                     <li class="synopsis">{{ movie.synopsis }}</li>

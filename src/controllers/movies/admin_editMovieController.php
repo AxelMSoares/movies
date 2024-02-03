@@ -1,12 +1,28 @@
 <?php 
 
 $targetToSave = '';
+
+// Images directory
 $path = 'images/posters';
+
+// Width to resize images
 $imageWidth = 200;
+
+// Get all the categories for the form inputs
 $categoriesList = getCategories();
-$movieCategories = getMovieCategories();
+
+// Start the movies categories empty for the create movie case
+$movieCategories = [];
+
+// Get the categories of a movie in a update case
+if (!empty($_GET['id'])){
+
+    $movieCategories = getMovieCategories();
+
+}
 
 
+// Array with status, classes and messages for the verifications before create or update a movie
 $moviesMessage = [
 
     'title' => [
@@ -134,6 +150,7 @@ if(!empty($_POST)){
         }
     }   
 
+    // If a url is sent, check if is a youtube url 
     if (!empty($_POST['trailer'])){
         if(!checkYoutubeUrl($_POST['trailer'])){
             $moviesMessage['trailer']['status'] = true;
@@ -141,43 +158,64 @@ if(!empty($_POST)){
         }
     }
 
-    // If Success in all the verifications, the movie is add in the database.
+    // Checks if there is at least one category
+    if (empty($_POST['categories'])){
+
+        $moviesMessage['categories']['status'] = true;
+        alert('Merci de choisir au moins une catégorie');
+
+    }
+
+    // If Success in all the verifications, the movie is created or update in the database.
     if ($moviesMessage['release_date']['status'] !== true &&
         $moviesMessage['title']['status'] !== true &&
         $moviesMessage['synopsis']['status'] !== true &&
         $moviesMessage['trailer']['status'] !== true &&
+        $moviesMessage['categories']['status'] !== true &&
         $moviesMessage['duration']['status'] !== true)
     {
 
+        // Update case
         if(!empty($_GET['id'])) {
 
+            // If a new poster is updated by the user, replace the actual. If no one send, dont replace the actual
+            // Resize the file before save
             if (!empty($_FILES['poster']['name'])){
 
                 $targetToSave = uploadFile($path, 'poster');
-                // imageResize($targetToSave, $imageWidth);
-
+                imageResize($targetToSave, $imageWidth);
             }
             
+            // Delete all movies categories
             deleteMoviesCat();
 
             foreach ($_POST['categories'] as $cat){
 
+                // Recreate the movies categories
                 createMoviesCat($_GET['id'], $cat);
 
             }
 
+            updateMovie($targetToSave);
             alert('Le film a été mis a jour avec success.', 'success');
             header('location: ' . $router->generate('displayMovie'));
             die;
         
+        // Create case
+        // If a poster is send, resize before save
         } else {
 
             $targetToSave = uploadFile($path, 'poster');
             $lastId = addMovie($targetToSave);
-            // imageResize($targetToSave, $imageWidth);
 
-            foreach ($_POST['categories'] as $cat) {
-                createMoviesCat($lastId, $cat);
+            if (!empty($_FILES['poster']['name'])){
+                imageResize($targetToSave, $imageWidth);
+            }
+
+            if (!empty($_POST['categories'])){
+                foreach ($_POST['categories'] as $cat) {
+                    createMoviesCat($lastId, $cat);
+                }
             }
 
             alert('Le film a été ajouté avec success.', 'success');
