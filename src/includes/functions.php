@@ -307,12 +307,12 @@ function uploadFile(string $path, string $field, array $exts = ['jpg', 'png', 'j
 * @param int $width width
 * @return void
  */
-function imageResize(string $imageName, int $width)
+function imageResize(string $imageName, int $width, int $height)
 {
 
 	$manager = new ImageManager(new Driver());
 	$image = $manager->read($imageName);
-	$image->scale(width: $width);
+	$image->scale(width: $width, height: $height);
 	$image->save($imageName);
 
 }

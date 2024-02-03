@@ -68,6 +68,7 @@ main {
 
         img{
             max-width: 240px;
+            height: 280px;
             width: 100%;
         }
     }
@@ -201,7 +202,8 @@ main {
     }
 
     img{
-        max-width: 800px;
+        max-width: 320px;
+        height: 420px;
         width: 100%;
         box-shadow: inset 0px 12px 4px -8px rgba(0,0,0,0.4);
     }

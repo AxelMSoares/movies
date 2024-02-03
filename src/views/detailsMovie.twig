@@ -13,7 +13,7 @@
                 <h1 class="title-main">{{ movie.title }}</h1>
                 <ul>
                     <li class="head">
-                        <div>Sortie : {{ movie.date|date('d/m/Y') }}</div>
+                        <div>Sortie : {{ movie.release_date|date('d/m/Y') }}</div>
                         <div>Genres : {{ movie.categories_names|replace({',': ', '}) }}</div>
                     </li>
                     <li>Casting : {{ movie.casting }}</li>

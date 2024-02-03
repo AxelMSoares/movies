@@ -13,7 +13,7 @@ get_header('Films', 'admin') ;
   <?php foreach ($movies as $movie) { ?>
     <?php if (empty($_GET['search']) || searchByName($movie['title'], $_GET['search'])){ ?>
       <div class="card m-4" style="width: 16rem;">
-        <img src="/<?= htmlentities($movie['poster']) ?>" class="img-fluid" alt="<?= htmlentities($movie['title']) ?>">
+        <img src="/<?= htmlentities($movie['poster']) ?>" class="img-fluid" style="width: 280px; height: 320px"alt="<?= htmlentities($movie['title']) ?>">
         <div class="card-body">
           <h5 class="card-title"><?= htmlentities($movie['title']) ?></h5>
         </div>

@@ -6,7 +6,8 @@ $targetToSave = '';
 $path = 'images/posters';
 
 // Width to resize images
-$imageWidth = 200;
+$imageWidth = 310;
+$imageHeight = 420;
 
 // Get all the categories for the form inputs
 $categoriesList = getCategories();
@@ -183,7 +184,7 @@ if(!empty($_POST)){
             if (!empty($_FILES['poster']['name'])){
 
                 $targetToSave = uploadFile($path, 'poster');
-                imageResize($targetToSave, $imageWidth);
+                // imageResize($targetToSave, $imageWidth, $imageHeight);
             }
             
             // Delete all movies categories
@@ -209,7 +210,7 @@ if(!empty($_POST)){
             $lastId = addMovie($targetToSave);
 
             if (!empty($_FILES['poster']['name'])){
-                imageResize($targetToSave, $imageWidth);
+                // imageResize($targetToSave, $imageWidth, $imageHeight);
             }
 
             if (!empty($_POST['categories'])){
